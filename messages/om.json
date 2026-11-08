@@ -5,7 +5,11 @@
   },
   "nav": {
     "home": "Kutaalee",
-    "menu": "Baafata guddaa"
+    "menu": "Baafata guddaa",
+    "guests": "Keessummoota",
+    "requests": "Gaaffilee",
+    "reports": "Gabaasa",
+    "settings": "Qindeessi"
   },
   "common": {
     "language": "Afaan",
@@ -75,7 +79,10 @@
     "legendInHouse": "Cuquliisa: keessummaan kutaa keessa jira",
     "legendReserved": "Sararame: qabameera",
     "legendCheckedOut": "Daalacha: ba'eera",
-    "newStay": "Turtii haaraa"
+    "newStay": "Turtii haaraa",
+    "cleaningTitle": "Kutaalee qulqullaa'uu qaban",
+    "markClean": "Kutaan {room} qulqulluu dha",
+    "setupRooms": "Kutaalee qindeessi"
   },
   "stay": {
     "newTitle": "Turtii haaraa",
@@ -172,6 +179,76 @@
     "already_reversed": "Kaffaltiin kun duraan deebifameera.",
     "not_allowed": "Gaheen kee kana hin hayyamu. Hoogganaa gaafadhu.",
     "not_demo_tenant": "Odeeffannoon agarsiisaa hoteela agarsiisaa qofatti fe'ama.",
-    "already_loaded": "Hoteelli kun duraan kutaalee qaba."
+    "already_loaded": "Hoteelli kun duraan kutaalee qaba.",
+    "request_not_found": "Gaaffiin kun duraan raawwatameera.",
+    "rate_limited": "Gaaffiin baay'ateera. Sa'aatii tokko booda yaali.",
+    "room_exists": "Lakkoofsi kutaa kun duraan jira."
+  },
+  "guests": {
+    "title": "Galmee keessummootaa",
+    "search": "Keessummaa barbaadi",
+    "searchPlaceholder": "Maqaa ykn bilbila",
+    "empty": "Ammaaf keessummaan hin jiru. Turtii jalqabaa booda asitti mul'atu.",
+    "noMatch": "Keessummaan wal fakkaatu hin jiru.",
+    "owes": "Liqii {amount}",
+    "stays": "Turtiiwwan",
+    "noStays": "Ammaaf turtiin hin jiru."
+  },
+  "requests": {
+    "title": "Gaaffilee qabiinsaa",
+    "empty": "Gaaffiin haaraan hin jiru. Gaaffileen marsariitii keessan irraa asitti mul'atu.",
+    "details": "{type}, keessummaa {adults}",
+    "anyType": "Kutaa kamiyyuu",
+    "confirm": "Kutaa qabi",
+    "decline": "Didi"
+  },
+  "reports": {
+    "title": "Guutinsa kutaa fi galii",
+    "occupancy": "Guutinsa, guyyoota {days} darban",
+    "income": "Galii, guyyoota {days} darban",
+    "date": "Guyyaa",
+    "occupied": "Kutaalee",
+    "arrivals": "Galan",
+    "departures": "Ba'an",
+    "incomeColumn": "Galii"
+  },
+  "settings": {
+    "title": "Qindeessi",
+    "roomTypes": "Gosoota kutaa fi gatii",
+    "noTypes": "Ammaaf gosti kutaa hin jiru. Armaan gaditti dabali.",
+    "noRate": "Gatii hin qabu",
+    "nightlyRate": "Gatii halkanii (birrii)",
+    "saveRate": "Gatii galmeessi",
+    "rateSaved": "Gatiin galmaa'eera.",
+    "addType": "Gosa kutaa dabali",
+    "typeName": "Maqaa",
+    "capacity": "Hanga qabatu",
+    "addTypeAction": "Gosa kutaa dabali",
+    "rooms": "Kutaalee",
+    "addTypeFirst": "Dursa gosa kutaa dabali.",
+    "roomNumber": "Lakkoofsa kutaa",
+    "floor": "Darbii",
+    "roomType": "Gosa kutaa",
+    "addRoomAction": "Kutaa dabali",
+    "outOfService": "Tajaajila ala",
+    "takeOut": "Tajaajila irraa baasi",
+    "putBack": "Tajaajilatti deebisi"
+  },
+  "site": {
+    "rooms": "Kutaalee",
+    "sleeps": "Nama {count}",
+    "perNight": "halkan tokkoof",
+    "requestTitle": "Kutaa gaafadhu",
+    "requestIntro": "Guyyoota kee ergi; simataan bilbilee siif mirkaneessa.",
+    "send": "Gaaffii ergi",
+    "sent": "Gaaffiin kee ergameera. Simataan dhiyootti siif bilbila.",
+    "name": "Maqaa kee",
+    "phone": "Lakkoofsa bilbilaa",
+    "checkIn": "Yeroo seentu",
+    "checkOut": "Yeroo baatu",
+    "roomType": "Kutaa",
+    "anyRoom": "Kutaa kamiyyuu",
+    "guests": "Keessummoota",
+    "message": "Ergaa (yoo jiraate)"
   }
 }

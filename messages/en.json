@@ -5,7 +5,11 @@
   },
   "nav": {
     "home": "Rooms",
-    "menu": "Main menu"
+    "menu": "Main menu",
+    "guests": "Guests",
+    "requests": "Requests",
+    "reports": "Reports",
+    "settings": "Setup"
   },
   "common": {
     "language": "Language",
@@ -75,7 +79,10 @@
     "legendInHouse": "Blue: guest in the room",
     "legendReserved": "Hatched: reserved",
     "legendCheckedOut": "Grey: checked out",
-    "newStay": "New stay"
+    "newStay": "New stay",
+    "cleaningTitle": "Rooms to clean",
+    "markClean": "Room {room} is clean",
+    "setupRooms": "Set up rooms"
   },
   "stay": {
     "newTitle": "New stay",
@@ -172,6 +179,76 @@
     "already_reversed": "That charge was already undone.",
     "not_allowed": "Your role cannot do this. Ask a manager.",
     "not_demo_tenant": "Demo data can only be loaded into the demo hotel.",
-    "already_loaded": "This hotel already has rooms."
+    "already_loaded": "This hotel already has rooms.",
+    "request_not_found": "That request was already handled.",
+    "rate_limited": "Too many requests. Please try again in an hour.",
+    "room_exists": "A room with that number already exists."
+  },
+  "guests": {
+    "title": "Guest register",
+    "search": "Search guests",
+    "searchPlaceholder": "Name or phone",
+    "empty": "No guests yet. Guests appear here after their first stay.",
+    "noMatch": "No guest matches that search.",
+    "owes": "Owes {amount}",
+    "stays": "Stays",
+    "noStays": "No stays yet."
+  },
+  "requests": {
+    "title": "Booking requests",
+    "empty": "No new requests. Requests from your website appear here.",
+    "details": "{type}, {adults, plural, one {# guest} other {# guests}}",
+    "anyType": "Any room",
+    "confirm": "Book a room",
+    "decline": "Decline"
+  },
+  "reports": {
+    "title": "Occupancy and income",
+    "occupancy": "Occupancy, last {days} days",
+    "income": "Income, last {days} days",
+    "date": "Date",
+    "occupied": "Rooms",
+    "arrivals": "In",
+    "departures": "Out",
+    "incomeColumn": "Income"
+  },
+  "settings": {
+    "title": "Setup",
+    "roomTypes": "Room types and prices",
+    "noTypes": "No room types yet. Add your first one below.",
+    "noRate": "No price",
+    "nightlyRate": "Price per night (birr)",
+    "saveRate": "Save price",
+    "rateSaved": "Price saved.",
+    "addType": "Add a room type",
+    "typeName": "Name",
+    "capacity": "Sleeps",
+    "addTypeAction": "Add room type",
+    "rooms": "Rooms",
+    "addTypeFirst": "Add a room type first.",
+    "roomNumber": "Room number",
+    "floor": "Floor",
+    "roomType": "Room type",
+    "addRoomAction": "Add room",
+    "outOfService": "Out of service",
+    "takeOut": "Take out of service",
+    "putBack": "Put back in service"
+  },
+  "site": {
+    "rooms": "Rooms",
+    "sleeps": "Sleeps {count}",
+    "perNight": "per night",
+    "requestTitle": "Ask for a room",
+    "requestIntro": "Send your dates and reception will call you to confirm.",
+    "send": "Send request",
+    "sent": "Request sent. Reception will call you soon.",
+    "name": "Your name",
+    "phone": "Phone number",
+    "checkIn": "Arrive",
+    "checkOut": "Leave",
+    "roomType": "Room",
+    "anyRoom": "Any room",
+    "guests": "Guests",
+    "message": "Message (optional)"
   }
 }

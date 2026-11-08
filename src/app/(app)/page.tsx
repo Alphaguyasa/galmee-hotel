@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
-import { loadDemoDataAction } from "@/actions/stays";
+import { loadDemoDataAction, markRoomCleanAction } from "@/actions/stays";
 import { ActionForm } from "@/components/hotel/action-form";
 import { BOARD_DAYS, RoomBoard } from "@/components/hotel/room-board";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import type { Locale } from "@/i18n/config";
 import { formatEthiopianDate } from "@/lib/ethiopian-date";
 import { addDays, addisToday, boardSummary, dayRange } from "@/lib/room-board";
@@ -33,6 +33,7 @@ export default async function BoardPage({ searchParams }: { searchParams: Promis
       <div className="grid max-w-md gap-3">
         <h1 className="text-2xl font-semibold">{t("title")}</h1>
         <p className="text-muted-foreground">{t("emptyBody")}</p>
+        {profile.role !== "staff" ? <Link href="/settings" className={buttonVariants({ size: "lg" })}>{t("setupRooms")}</Link> : null}
         {tenant.name === DEMO_TENANT && profile.role === "owner" ? (
           <ActionForm action={loadDemoDataAction} submitLabel={t("loadDemo")} />
         ) : null}
@@ -49,6 +50,7 @@ export default async function BoardPage({ searchParams }: { searchParams: Promis
     { label: t("freeTonight"), value: summary.freeTonight },
   ];
   const windowed = stays.filter((s) => s.checkIn < addDays(from, BOARD_DAYS) && s.checkOut > from);
+  const dirtyRooms = rooms.filter((r) => r.dirty && r.inService);
   const navClass = cn(buttonVariants({ variant: "outline", size: "icon" }), "bg-card");
 
   return (
@@ -84,6 +86,23 @@ export default async function BoardPage({ searchParams }: { searchParams: Promis
         <li>{t("legendReserved")}</li>
         <li>{t("legendCheckedOut")}</li>
       </ul>
+
+      {dirtyRooms.length > 0 ? (
+        <section className="grid gap-2" aria-labelledby="cleaning">
+          <h2 id="cleaning" className="font-semibold">{t("cleaningTitle")}</h2>
+          <ul className="flex flex-wrap gap-2">
+            {dirtyRooms.map((room) => (
+              <li key={room.id}>
+                <form action={markRoomCleanAction.bind(null, room.id)}>
+                  <Button type="submit" variant="outline" className="bg-card">
+                    {t("markClean", { room: room.number })}
+                  </Button>
+                </form>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       <Link
         href="/stays/new"

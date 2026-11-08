@@ -5,7 +5,11 @@
   },
   "nav": {
     "home": "ክፍሎች",
-    "menu": "ዋና ማውጫ"
+    "menu": "ዋና ማውጫ",
+    "guests": "እንግዶች",
+    "requests": "ጥያቄዎች",
+    "reports": "ሪፖርት",
+    "settings": "ማዋቀር"
   },
   "common": {
     "language": "ቋንቋ",
@@ -75,7 +79,10 @@
     "legendInHouse": "ሰማያዊ፦ እንግዳ ክፍል ውስጥ ነው",
     "legendReserved": "መስመር ያለው፦ ተይዟል",
     "legendCheckedOut": "ግራጫ፦ ወጥቷል",
-    "newStay": "አዲስ ቆይታ"
+    "newStay": "አዲስ ቆይታ",
+    "cleaningTitle": "መጽዳት ያለባቸው ክፍሎች",
+    "markClean": "ክፍል {room} ጸድቷል",
+    "setupRooms": "ክፍሎችን አዋቅር"
   },
   "stay": {
     "newTitle": "አዲስ ቆይታ",
@@ -172,6 +179,76 @@
     "already_reversed": "ይህ ክፍያ ቀድሞ ተመልሷል።",
     "not_allowed": "የእርስዎ ሚና ይህን አይፈቅድም። ሥራ አስኪያጅ ይጠይቁ።",
     "not_demo_tenant": "የማሳያ መረጃ የሚጫነው በማሳያ ሆቴሉ ብቻ ነው።",
-    "already_loaded": "ይህ ሆቴል ክፍሎች አሉት።"
+    "already_loaded": "ይህ ሆቴል ክፍሎች አሉት።",
+    "request_not_found": "ይህ ጥያቄ ቀድሞ ተስተናግዷል።",
+    "rate_limited": "ብዙ ጥያቄዎች ተልከዋል። ከአንድ ሰዓት በኋላ ይሞክሩ።",
+    "room_exists": "ይህ የክፍል ቁጥር አስቀድሞ አለ።"
+  },
+  "guests": {
+    "title": "የእንግዶች መዝገብ",
+    "search": "እንግዳ ፈልግ",
+    "searchPlaceholder": "ስም ወይም ስልክ",
+    "empty": "እስካሁን እንግዶች የሉም። ከመጀመሪያ ቆይታቸው በኋላ እዚህ ይታያሉ።",
+    "noMatch": "የሚዛመድ እንግዳ የለም።",
+    "owes": "ዕዳ {amount}",
+    "stays": "ቆይታዎች",
+    "noStays": "እስካሁን ቆይታ የለም።"
+  },
+  "requests": {
+    "title": "የቦታ ማስያዣ ጥያቄዎች",
+    "empty": "አዲስ ጥያቄ የለም። ከድረ-ገጽዎ የሚመጡ ጥያቄዎች እዚህ ይታያሉ።",
+    "details": "{type}፣ {adults} እንግዳ",
+    "anyType": "ማንኛውም ክፍል",
+    "confirm": "ክፍል ያዝ",
+    "decline": "አትቀበል"
+  },
+  "reports": {
+    "title": "የክፍል ሙሌት እና ገቢ",
+    "occupancy": "ሙሌት፣ ያለፉት {days} ቀናት",
+    "income": "ገቢ፣ ያለፉት {days} ቀናት",
+    "date": "ቀን",
+    "occupied": "ክፍሎች",
+    "arrivals": "ገቡ",
+    "departures": "ወጡ",
+    "incomeColumn": "ገቢ"
+  },
+  "settings": {
+    "title": "ማዋቀር",
+    "roomTypes": "የክፍል ዓይነቶች እና ዋጋዎች",
+    "noTypes": "እስካሁን የክፍል ዓይነት የለም። ከታች ይጨምሩ።",
+    "noRate": "ዋጋ የለም",
+    "nightlyRate": "የአዳር ዋጋ (ብር)",
+    "saveRate": "ዋጋ መዝግብ",
+    "rateSaved": "ዋጋው ተመዝግቧል።",
+    "addType": "የክፍል ዓይነት ጨምር",
+    "typeName": "ስም",
+    "capacity": "የሚያስተናግደው",
+    "addTypeAction": "የክፍል ዓይነት ጨምር",
+    "rooms": "ክፍሎች",
+    "addTypeFirst": "መጀመሪያ የክፍል ዓይነት ይጨምሩ።",
+    "roomNumber": "የክፍል ቁጥር",
+    "floor": "ፎቅ",
+    "roomType": "የክፍል ዓይነት",
+    "addRoomAction": "ክፍል ጨምር",
+    "outOfService": "አገልግሎት ላይ አይደለም",
+    "takeOut": "ከአገልግሎት አውጣ",
+    "putBack": "ወደ አገልግሎት መልስ"
+  },
+  "site": {
+    "rooms": "ክፍሎች",
+    "sleeps": "{count} ሰው",
+    "perNight": "በአዳር",
+    "requestTitle": "ክፍል ይጠይቁ",
+    "requestIntro": "ቀናትዎን ይላኩ፤ እንግዳ ተቀባይ ደውሎ ያረጋግጥልዎታል።",
+    "send": "ጥያቄ ላክ",
+    "sent": "ጥያቄዎ ተልኳል። እንግዳ ተቀባይ በቅርቡ ይደውልልዎታል።",
+    "name": "ስምዎ",
+    "phone": "ስልክ ቁጥር",
+    "checkIn": "የሚገቡበት",
+    "checkOut": "የሚወጡበት",
+    "roomType": "ክፍል",
+    "anyRoom": "ማንኛውም ክፍል",
+    "guests": "እንግዶች",
+    "message": "መልዕክት (ካለ)"
   }
 }

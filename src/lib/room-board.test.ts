@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addDays, addisToday, boardSummary, dayRange, placeStays } from "./room-board";
+import { addDays, addisToday, boardSummary, dayRange, firstFreeRoom, placeStays } from "./room-board";
 
 const stay = (id: string, checkIn: string, checkOut: string, roomId = "r1") => ({ id, roomId, checkIn, checkOut });
 
@@ -73,5 +73,25 @@ describe("boardSummary", () => {
   it("never goes below zero free rooms", () => {
     const s = boardSummary([{ checkIn: today, checkOut: "2026-11-09", status: "reserved" }], today, 0);
     expect(s.freeTonight).toBe(0);
+  });
+});
+
+describe("firstFreeRoom", () => {
+  const rooms = [
+    { id: "a", typeName: "Twin", inService: false },
+    { id: "b", typeName: "Twin", inService: true },
+    { id: "c", typeName: "Twin", inService: true },
+    { id: "d", typeName: "Family", inService: true },
+  ];
+  it("skips rooms out of service and rooms with an overlapping stay", () => {
+    const stays = [{ roomId: "b", checkIn: "2026-11-08", checkOut: "2026-11-10", status: "reserved" }];
+    expect(firstFreeRoom(rooms, stays, "Twin", "2026-11-09", "2026-11-11")?.id).toBe("c");
+  });
+  it("treats check-out day as free", () => {
+    const stays = [{ roomId: "b", checkIn: "2026-11-08", checkOut: "2026-11-10", status: "reserved" }];
+    expect(firstFreeRoom(rooms, stays, "Twin", "2026-11-10", "2026-11-11")?.id).toBe("b");
+  });
+  it("returns undefined when nothing fits", () => {
+    expect(firstFreeRoom(rooms, [], "Suite", "2026-11-10", "2026-11-11")).toBeUndefined();
   });
 });

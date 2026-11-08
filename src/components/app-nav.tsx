@@ -3,17 +3,23 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { BedDouble } from "lucide-react";
+import { BarChart3, BedDouble, Inbox, Settings, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const ITEMS = [{ href: "/", key: "home", icon: BedDouble }] as const;
+const ITEMS = [
+  { href: "/", key: "home", icon: BedDouble, manager: false },
+  { href: "/guests", key: "guests", icon: Users, manager: false },
+  { href: "/requests", key: "requests", icon: Inbox, manager: false },
+  { href: "/reports", key: "reports", icon: BarChart3, manager: true },
+  { href: "/settings", key: "settings", icon: Settings, manager: true },
+] as const;
 
 function isActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 }
 
 /** Bottom tab bar on phones, vertical list in the desktop sidebar. */
-export function AppNav({ variant }: { variant: "bottom" | "side" }) {
+export function AppNav({ variant, canManage }: { variant: "bottom" | "side"; canManage: boolean }) {
   const pathname = usePathname();
   const t = useTranslations("nav");
 
@@ -26,7 +32,7 @@ export function AppNav({ variant }: { variant: "bottom" | "side" }) {
           : "hidden flex-col gap-1 md:flex",
       )}
     >
-      {ITEMS.map(({ href, key, icon: Icon }) => {
+      {ITEMS.filter((item) => canManage || !item.manager).map(({ href, key, icon: Icon }) => {
         const active = isActive(pathname, href);
         return (
           <Link

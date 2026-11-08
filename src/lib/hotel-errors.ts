@@ -15,9 +15,11 @@ const KNOWN = [
   "not_allowed",
   "not_demo_tenant",
   "already_loaded",
+  "request_not_found",
+  "rate_limited",
 ] as const;
 
-export type HotelErrorKey = (typeof KNOWN)[number] | "generic";
+export type HotelErrorKey = (typeof KNOWN)[number] | "room_exists" | "generic";
 
 /** Turns a database error message into a translation key; anything unknown stays generic. */
 export function hotelErrorKey(message: string | undefined): HotelErrorKey {

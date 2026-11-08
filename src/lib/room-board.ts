@@ -76,3 +76,17 @@ export function boardSummary(stays: SummaryStay[], today: string, roomsInService
   }
   return { inHouse, arrivals, dueOut, freeTonight: Math.max(roomsInService - takenTonight, 0) };
 }
+
+/** First in-service room of a type with no stay over [checkIn, checkOut), or undefined. */
+export function firstFreeRoom<R extends { id: string; typeName: string; inService: boolean }>(
+  rooms: R[],
+  stays: { roomId: string; checkIn: string; checkOut: string; status: string }[],
+  typeName: string | undefined,
+  checkIn: string,
+  checkOut: string,
+): R | undefined {
+  const busy = new Set(
+    stays.filter((s) => s.status !== "checked_out" && s.checkIn < checkOut && s.checkOut > checkIn).map((s) => s.roomId),
+  );
+  return rooms.find((r) => r.inService && !busy.has(r.id) && (!typeName || r.typeName === typeName));
+}

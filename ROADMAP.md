@@ -24,9 +24,9 @@
 
 - [x] Room board: grid of rooms by day, colour by status
 - [x] Check-in / check-out
-- [ ] Guest register
+- [x] Guest register
 - [x] Extra charges (food, laundry)
-- [ ] Daily occupancy and income
+- [x] Daily occupancy and income
 - [ ] Public one-page website with booking request form
 - [x] Migration: ht_rooms
 - [x] Migration: ht_room_types

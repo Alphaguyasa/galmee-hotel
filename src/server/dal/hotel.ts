@@ -167,6 +167,7 @@ export async function createStay(input: {
   source: string;
   checkInNow: boolean;
   clientRef: string;
+  request?: string;
 }): Promise<MutationResult<string>> {
   const supabase = await createClient();
   const { data, error } = await supabase.rpc("ht_create_stay", {
@@ -181,6 +182,7 @@ export async function createStay(input: {
     p_source: input.source,
     p_check_in_now: input.checkInNow,
     p_client_ref: input.clientRef,
+    p_request: input.request,
   });
   if (error || !data) return fail(error?.message);
   return { ok: true, data };
@@ -250,5 +252,178 @@ export async function cancelStay(stay: string, noShow: boolean): Promise<Mutatio
 export async function loadDemoData(): Promise<MutationResult> {
   const supabase = await createClient();
   const { error } = await supabase.rpc("ht_load_demo_data");
+  return error ? fail(error.message) : { ok: true, data: undefined };
+}
+
+export async function setHousekeeping(room: string, state: "clean" | "dirty"): Promise<MutationResult> {
+  const supabase = await createClient();
+  const { error } = await supabase.rpc("ht_set_housekeeping", { p_room: room, p_state: state });
+  return error ? fail(error.message) : { ok: true, data: undefined };
+}
+
+export type RoomTypeDTO = { id: string; name: string; capacity: number; rate: number | null };
+
+export const listRoomTypes = cache(async (): Promise<RoomTypeDTO[]> => {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("ht_room_types")
+    .select("id, name, capacity, sort_order, ht_rate_plans(nightly_rate, is_default, active)")
+    .order("sort_order")
+    .order("name");
+  if (error) throw new Error("types_unavailable");
+  return (data ?? []).map((t) => {
+    const plan = t.ht_rate_plans.find((p) => p.is_default && p.active);
+    return { id: t.id, name: t.name, capacity: t.capacity, rate: plan ? Number(plan.nightly_rate) : null };
+  });
+});
+
+export async function addRoomType(input: { name: string; capacity: number; rate: number }): Promise<MutationResult> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("ht_room_types")
+    .insert({ name: input.name, capacity: input.capacity })
+    .select("id")
+    .single();
+  if (error || !data) return fail(error?.message);
+  const { error: planError } = await supabase
+    .from("ht_rate_plans")
+    .insert({ room_type_id: data.id, name: "Standard", nightly_rate: input.rate, is_default: true });
+  if (planError) {
+    await supabase.from("ht_room_types").delete().eq("id", data.id);
+    return fail(planError.message);
+  }
+  return { ok: true, data: undefined };
+}
+
+export async function setDefaultRate(roomType: string, rate: number): Promise<MutationResult> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("ht_rate_plans")
+    .update({ nightly_rate: rate })
+    .eq("room_type_id", roomType)
+    .eq("is_default", true)
+    .select("id");
+  if (error) return fail(error.message);
+  if (data?.length) return { ok: true, data: undefined };
+  const { error: insertError } = await supabase
+    .from("ht_rate_plans")
+    .insert({ room_type_id: roomType, name: "Standard", nightly_rate: rate, is_default: true });
+  return insertError ? fail(insertError.message) : { ok: true, data: undefined };
+}
+
+export async function addRoom(input: { number: string; roomType: string; floor?: string }): Promise<MutationResult> {
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("ht_rooms")
+    .insert({ number: input.number, room_type_id: input.roomType, floor: input.floor });
+  if (error?.code === "23505") return { ok: false, error: "room_exists" };
+  return error ? fail(error.message) : { ok: true, data: undefined };
+}
+
+export async function setRoomInService(room: string, inService: boolean): Promise<MutationResult> {
+  const supabase = await createClient();
+  const { error } = await supabase.from("ht_rooms").update({ in_service: inService }).eq("id", room);
+  return error ? fail(error.message) : { ok: true, data: undefined };
+}
+
+export type GuestRowDTO = { id: string; name: string; phone: string | null; balance: number };
+
+export async function searchGuests(q: string): Promise<GuestRowDTO[]> {
+  const supabase = await createClient();
+  let query = supabase.from("customer_balances").select("customer_id, name, phone, balance").order("name").limit(100);
+  // Commas and parentheses separate PostgREST filters, so they never reach the or() string.
+  const term = q.replace(/[,()*%\\:"]/g, " ").trim();
+  if (term) query = query.or(`name.ilike.*${term}*,phone.ilike.*${term}*`);
+  const { data, error } = await query;
+  if (error) throw new Error("guests_unavailable");
+  return (data ?? []).flatMap((g) =>
+    g.customer_id ? [{ id: g.customer_id, name: g.name ?? "", phone: g.phone, balance: Number(g.balance ?? 0) }] : [],
+  );
+}
+
+export type GuestDetailDTO = GuestRowDTO & {
+  stays: { id: string; roomNumber: string; checkIn: string; checkOut: string; status: StayDetailDTO["status"]; idType: string | null; idNumber: string | null }[];
+};
+
+export async function getGuest(id: string): Promise<GuestDetailDTO | null> {
+  const supabase = await createClient();
+  const [guest, stays] = await Promise.all([
+    supabase.from("customer_balances").select("customer_id, name, phone, balance").eq("customer_id", id).maybeSingle(),
+    supabase
+      .from("ht_stays")
+      .select("id, check_in, check_out, status, id_type, id_number, ht_rooms(number)")
+      .eq("customer_id", id)
+      .order("check_in", { ascending: false })
+      .limit(100),
+  ]);
+  if (guest.error || stays.error) throw new Error("guest_unavailable");
+  if (!guest.data?.customer_id) return null;
+  return {
+    id: guest.data.customer_id,
+    name: guest.data.name ?? "",
+    phone: guest.data.phone,
+    balance: Number(guest.data.balance ?? 0),
+    stays: (stays.data ?? []).map((s) => ({
+      id: s.id,
+      roomNumber: s.ht_rooms?.number ?? "",
+      checkIn: s.check_in,
+      checkOut: s.check_out,
+      status: s.status as StayDetailDTO["status"],
+      idType: s.id_type,
+      idNumber: s.id_number,
+    })),
+  };
+}
+
+export type ReportDayDTO = { day: string; rooms: number; occupied: number; arrivals: number; departures: number; income: number };
+
+export async function dailyReport(from: string, to: string): Promise<ReportDayDTO[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase.rpc("ht_daily_report", { p_from: from, p_to: to });
+  if (error) throw new Error("report_unavailable");
+  return (data ?? []).map((d) => ({ ...d, income: Number(d.income) }));
+}
+
+export type RequestDTO = {
+  id: string;
+  guestName: string;
+  phone: string;
+  checkIn: string;
+  checkOut: string;
+  roomTypeName: string | null;
+  adults: number;
+  message: string | null;
+  createdAt: string;
+};
+
+export const listNewRequests = cache(async (): Promise<RequestDTO[]> => {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("ht_booking_requests")
+    .select("id, guest_name, phone, check_in, check_out, adults, message, created_at, ht_room_types(name)")
+    .eq("status", "new")
+    .order("created_at", { ascending: false })
+    .limit(100);
+  if (error) throw new Error("requests_unavailable");
+  return (data ?? []).map((r) => ({
+    id: r.id,
+    guestName: r.guest_name,
+    phone: r.phone,
+    checkIn: r.check_in,
+    checkOut: r.check_out,
+    roomTypeName: r.ht_room_types?.name ?? null,
+    adults: r.adults,
+    message: r.message,
+    createdAt: r.created_at,
+  }));
+});
+
+export async function getRequest(id: string): Promise<RequestDTO | null> {
+  return (await listNewRequests()).find((r) => r.id === id) ?? null;
+}
+
+export async function declineRequest(id: string): Promise<MutationResult> {
+  const supabase = await createClient();
+  const { error } = await supabase.rpc("ht_decline_request", { p_request: id });
   return error ? fail(error.message) : { ok: true, data: undefined };
 }

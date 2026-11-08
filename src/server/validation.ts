@@ -54,6 +54,7 @@ export const newStaySchema = z
     source: z.enum(["walk_in", "phone", "website", "other"]),
     checkInNow: z.string().transform((v) => v === "on"),
     clientRef: uuid,
+    request: z.union([z.literal(""), uuid]).transform((v) => v || undefined),
   })
   .refine((v) => v.checkOut > v.checkIn, { path: ["checkOut"] });
 
@@ -87,3 +88,33 @@ export const checkOutSchema = z.object({
   reference: optionalText(80),
   leaveBalance: z.string().transform((v) => v === "on"),
 });
+
+export const roomTypeSchema = z.object({
+  name: z.string().trim().min(1).max(80),
+  capacity: z.coerce.number().int().min(1).max(20),
+  rate: z.coerce.number().min(0).max(10_000_000),
+});
+
+export const rateSchema = z.object({
+  roomType: uuid,
+  rate: z.coerce.number().min(0).max(10_000_000),
+});
+
+export const roomSchema = z.object({
+  number: z.string().trim().min(1).max(12),
+  roomType: uuid,
+  floor: optionalText(20),
+});
+
+export const bookingRequestSchema = z
+  .object({
+    slug: z.string().regex(/^[a-z0-9-]{3,40}$/),
+    guestName: z.string().trim().min(2).max(120),
+    phone: phoneSchema,
+    checkIn: day,
+    checkOut: day,
+    roomType: z.union([z.literal(""), uuid]).transform((v) => v || undefined),
+    adults: z.coerce.number().int().min(1).max(20),
+    message: optionalText(500),
+  })
+  .refine((v) => v.checkOut > v.checkIn, { path: ["checkOut"] });

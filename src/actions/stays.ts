@@ -30,7 +30,7 @@ function refresh(stay: string) {
 export async function createStayAction(_prev: ActionState, formData: FormData): Promise<ActionState> {
   await requireLogin();
   const parsed = newStaySchema.safeParse({
-    ...formToObject(formData, ["room", "guestName", "guestPhone", "checkIn", "checkOut", "adults", "children", "nightlyRate", "source", "clientRef"]),
+    ...formToObject(formData, ["room", "guestName", "guestPhone", "checkIn", "checkOut", "adults", "children", "nightlyRate", "source", "clientRef", "request"]),
     checkInNow: formData.get("checkInNow") ?? "off",
   });
   if (!parsed.success) return { error: parsed.error.issues[0]?.path[0] === "guestPhone" ? "phone" : "form" };
@@ -38,6 +38,7 @@ export async function createStayAction(_prev: ActionState, formData: FormData): 
   const result = await hotel.createStay(parsed.data);
   if (!result.ok) return { error: result.error };
   revalidatePath("/");
+  revalidatePath("/requests");
   redirect(`/stays/${result.data}`);
 }
 
@@ -107,4 +108,18 @@ export async function loadDemoDataAction(): Promise<ActionState> {
   if (!result.ok) return { error: result.error };
   revalidatePath("/");
   return { done: true };
+}
+
+export async function markRoomCleanAction(room: string): Promise<void> {
+  await requireLogin();
+  if (!uuidParam.safeParse(room).success) return;
+  await hotel.setHousekeeping(room, "clean");
+  revalidatePath("/");
+}
+
+export async function declineRequestAction(id: string): Promise<void> {
+  await requireLogin();
+  if (!uuidParam.safeParse(id).success) return;
+  await hotel.declineRequest(id);
+  revalidatePath("/requests");
 }
