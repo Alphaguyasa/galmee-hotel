@@ -36,14 +36,14 @@ function TenantBadge({
 export async function AppShell({ tenantName, logoUrl, userName, roleLabel, canManage, children }: ShellProps) {
   const [t, tCommon] = await Promise.all([getTranslations("auth"), getTranslations("common")]);
   return (
-    <div className="min-h-dvh md:grid md:grid-cols-[15rem_1fr]">
+    <div className="min-h-dvh md:grid md:grid-cols-[15rem_1fr] print:block">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-card focus:px-4 focus:py-3 focus:text-foreground"
       >
         {tCommon("skipToContent")}
       </a>
-      <aside className="hidden border-r bg-card md:flex md:flex-col md:gap-6 md:p-4">
+      <aside className="hidden print:!hidden border-r bg-card md:flex md:flex-col md:gap-6 md:p-4">
         <TenantBadge tenantName={tenantName} logoUrl={logoUrl} />
         <AppNav variant="side" canManage={canManage} />
         <div className="mt-auto grid gap-3">
@@ -62,7 +62,7 @@ export async function AppShell({ tenantName, logoUrl, userName, roleLabel, canMa
       </aside>
 
       <div className="flex min-w-0 flex-col">
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-2 bg-primary px-4 text-primary-foreground md:hidden">
+        <header className="print:hidden sticky top-0 z-30 flex h-16 items-center justify-between gap-2 bg-primary px-4 text-primary-foreground md:hidden">
           <TenantBadge tenantName={tenantName} logoUrl={logoUrl} inverse />
           <div className="flex items-center gap-1">
             <LanguageSwitcher inverse />
@@ -78,7 +78,7 @@ export async function AppShell({ tenantName, logoUrl, userName, roleLabel, canMa
             </form>
           </div>
         </header>
-        <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-4 pt-4 pb-24 md:p-8">{children}</main>
+        <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-4 pt-4 pb-24 md:p-8 print:m-0 print:p-0">{children}</main>
       </div>
 
       <AppNav variant="bottom" canManage={canManage} />

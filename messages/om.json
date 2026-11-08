@@ -157,7 +157,10 @@
     "reverse": "Deebisi",
     "cancelTitle": "Qabiinsa kana haqi",
     "cancelAction": "Qabiinsa haqi",
-    "noShow": "Keessummaan hin dhufne"
+    "noShow": "Keessummaan hin dhufne",
+    "receipt": "Nagahee",
+    "print": "Maxxansi",
+    "printReceipt": "Nagahee maxxansi"
   },
   "errors": {
     "generic": "Rakkoon uumameera. Maaloo irra deebi'ii yaali.",
@@ -182,7 +185,9 @@
     "already_loaded": "Hoteelli kun duraan kutaalee qaba.",
     "request_not_found": "Gaaffiin kun duraan raawwatameera.",
     "rate_limited": "Gaaffiin baay'ateera. Sa'aatii tokko booda yaali.",
-    "room_exists": "Lakkoofsi kutaa kun duraan jira."
+    "room_exists": "Lakkoofsi kutaa kun duraan jira.",
+    "slug": "Teessoof qubee xixiqqoo, lakkoofsa fi sarara fayyadami.",
+    "slug_taken": "Teessoon kun qabameera. Kan biraa yaali."
   },
   "guests": {
     "title": "Galmee keessummootaa",
@@ -210,7 +215,10 @@
     "occupied": "Kutaalee",
     "arrivals": "Galan",
     "departures": "Ba'an",
-    "incomeColumn": "Galii"
+    "incomeColumn": "Galii",
+    "range": "Daangaa guyyaa",
+    "lastDays": "Guyyaa {days}",
+    "export": "CSV buufadhu"
   },
   "settings": {
     "title": "Qindeessi",
@@ -232,7 +240,19 @@
     "addRoomAction": "Kutaa dabali",
     "outOfService": "Tajaajila ala",
     "takeOut": "Tajaajila irraa baasi",
-    "putBack": "Tajaajilatti deebisi"
+    "putBack": "Tajaajilatti deebisi",
+    "website": "Marsariitii keessan",
+    "websiteIntro": "Fuula tokko keessummoonni kutaa itti gaafatan.",
+    "saveWebsite": "Marsariitii galmeessi",
+    "websiteSaved": "Marsariitiin galmaa'eera.",
+    "hotelName": "Maqaa hoteelaa",
+    "slug": "Teessoo marsariitii",
+    "slugHint": "Qubee xixiqqoo, lakkoofsa fi sarara, fakkeenyaaf abebe-guesthouse.",
+    "headline": "Mata-duree (yoo jiraate)",
+    "about": "Waa'ee hoteelaa (yoo jiraate)",
+    "address": "Teessoo (yoo jiraate)",
+    "phone": "Bilbila (yoo jiraate)",
+    "published": "Marsariitii ummataaf agarsiisi"
   },
   "site": {
     "rooms": "Kutaalee",

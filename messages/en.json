@@ -157,7 +157,10 @@
     "reverse": "Undo",
     "cancelTitle": "Cancel this reservation",
     "cancelAction": "Cancel reservation",
-    "noShow": "The guest did not arrive"
+    "noShow": "The guest did not arrive",
+    "receipt": "Receipt",
+    "print": "Print",
+    "printReceipt": "Print receipt"
   },
   "errors": {
     "generic": "Something went wrong. Please try again.",
@@ -182,7 +185,9 @@
     "already_loaded": "This hotel already has rooms.",
     "request_not_found": "That request was already handled.",
     "rate_limited": "Too many requests. Please try again in an hour.",
-    "room_exists": "A room with that number already exists."
+    "room_exists": "A room with that number already exists.",
+    "slug": "Use small letters, numbers and dashes for the web address.",
+    "slug_taken": "That web address is taken. Try another."
   },
   "guests": {
     "title": "Guest register",
@@ -210,7 +215,10 @@
     "occupied": "Rooms",
     "arrivals": "In",
     "departures": "Out",
-    "incomeColumn": "Income"
+    "incomeColumn": "Income",
+    "range": "Date range",
+    "lastDays": "{days} days",
+    "export": "Download CSV"
   },
   "settings": {
     "title": "Setup",
@@ -232,7 +240,19 @@
     "addRoomAction": "Add room",
     "outOfService": "Out of service",
     "takeOut": "Take out of service",
-    "putBack": "Put back in service"
+    "putBack": "Put back in service",
+    "website": "Your website",
+    "websiteIntro": "A one-page site where guests can ask for a room.",
+    "saveWebsite": "Save website",
+    "websiteSaved": "Website saved.",
+    "hotelName": "Hotel name",
+    "slug": "Web address",
+    "slugHint": "Small letters, numbers and dashes, for example abebe-guesthouse.",
+    "headline": "Headline (optional)",
+    "about": "About the hotel (optional)",
+    "address": "Address (optional)",
+    "phone": "Phone (optional)",
+    "published": "Show the website to the public"
   },
   "site": {
     "rooms": "Rooms",

@@ -427,3 +427,54 @@ export async function declineRequest(id: string): Promise<MutationResult> {
   const { error } = await supabase.rpc("ht_decline_request", { p_request: id });
   return error ? fail(error.message) : { ok: true, data: undefined };
 }
+
+export type SiteSettingsDTO = {
+  slug: string;
+  displayName: string;
+  headline: string | null;
+  about: string | null;
+  address: string | null;
+  phone: string | null;
+  published: boolean;
+};
+
+export async function getSiteSettings(): Promise<SiteSettingsDTO | null> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("ht_sites")
+    .select("slug, display_name, headline, about, address, phone, published")
+    .maybeSingle();
+  if (error) throw new Error("site_unavailable");
+  if (!data) return null;
+  return {
+    slug: data.slug,
+    displayName: data.display_name,
+    headline: data.headline,
+    about: data.about,
+    address: data.address,
+    phone: data.phone,
+    published: data.published,
+  };
+}
+
+export async function saveSiteSettings(
+  tenantId: string,
+  input: { slug: string; displayName: string; headline?: string; about?: string; address?: string; phone?: string; published: boolean },
+): Promise<MutationResult> {
+  const supabase = await createClient();
+  const { error } = await supabase.from("ht_sites").upsert(
+    {
+      tenant_id: tenantId,
+      slug: input.slug,
+      display_name: input.displayName,
+      headline: input.headline ?? null,
+      about: input.about ?? null,
+      address: input.address ?? null,
+      phone: input.phone ?? null,
+      published: input.published,
+    },
+    { onConflict: "tenant_id" },
+  );
+  if (error?.code === "23505") return { ok: false, error: "slug_taken" };
+  return error ? fail(error.message) : { ok: true, data: undefined };
+}

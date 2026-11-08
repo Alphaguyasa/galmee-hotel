@@ -157,7 +157,10 @@
     "reverse": "መልስ",
     "cancelTitle": "ይህን ቦታ ማስያዣ ሰርዝ",
     "cancelAction": "ቦታ ማስያዣውን ሰርዝ",
-    "noShow": "እንግዳው አልመጣም"
+    "noShow": "እንግዳው አልመጣም",
+    "receipt": "ደረሰኝ",
+    "print": "አትም",
+    "printReceipt": "ደረሰኝ አትም"
   },
   "errors": {
     "generic": "ችግር ተፈጥሯል። እባክዎ እንደገና ይሞክሩ።",
@@ -182,7 +185,9 @@
     "already_loaded": "ይህ ሆቴል ክፍሎች አሉት።",
     "request_not_found": "ይህ ጥያቄ ቀድሞ ተስተናግዷል።",
     "rate_limited": "ብዙ ጥያቄዎች ተልከዋል። ከአንድ ሰዓት በኋላ ይሞክሩ።",
-    "room_exists": "ይህ የክፍል ቁጥር አስቀድሞ አለ።"
+    "room_exists": "ይህ የክፍል ቁጥር አስቀድሞ አለ።",
+    "slug": "ለአድራሻው ትናንሽ የእንግሊዝኛ ፊደሎች፣ ቁጥሮች እና ሰረዝ ይጠቀሙ።",
+    "slug_taken": "ይህ አድራሻ ተይዟል። ሌላ ይሞክሩ።"
   },
   "guests": {
     "title": "የእንግዶች መዝገብ",
@@ -210,7 +215,10 @@
     "occupied": "ክፍሎች",
     "arrivals": "ገቡ",
     "departures": "ወጡ",
-    "incomeColumn": "ገቢ"
+    "incomeColumn": "ገቢ",
+    "range": "የቀን ክልል",
+    "lastDays": "{days} ቀናት",
+    "export": "CSV አውርድ"
   },
   "settings": {
     "title": "ማዋቀር",
@@ -232,7 +240,19 @@
     "addRoomAction": "ክፍል ጨምር",
     "outOfService": "አገልግሎት ላይ አይደለም",
     "takeOut": "ከአገልግሎት አውጣ",
-    "putBack": "ወደ አገልግሎት መልስ"
+    "putBack": "ወደ አገልግሎት መልስ",
+    "website": "የእርስዎ ድረ-ገጽ",
+    "websiteIntro": "እንግዶች ክፍል የሚጠይቁበት አንድ ገጽ ድረ-ገጽ።",
+    "saveWebsite": "ድረ-ገጹን መዝግብ",
+    "websiteSaved": "ድረ-ገጹ ተመዝግቧል።",
+    "hotelName": "የሆቴል ስም",
+    "slug": "የድረ-ገጽ አድራሻ",
+    "slugHint": "ትናንሽ የእንግሊዝኛ ፊደሎች፣ ቁጥሮች እና ሰረዝ፤ ለምሳሌ abebe-guesthouse።",
+    "headline": "ርዕስ (ካለ)",
+    "about": "ስለ ሆቴሉ (ካለ)",
+    "address": "አድራሻ (ካለ)",
+    "phone": "ስልክ (ካለ)",
+    "published": "ድረ-ገጹን ለሕዝብ አሳይ"
   },
   "site": {
     "rooms": "ክፍሎች",

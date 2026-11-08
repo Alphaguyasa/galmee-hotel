@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { randomUUID } from "node:crypto";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -11,7 +12,7 @@ import {
 } from "@/actions/stays";
 import { ActionForm } from "@/components/hotel/action-form";
 import { SelectField } from "@/components/hotel/fields";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -19,6 +20,7 @@ import type { Locale } from "@/i18n/config";
 import { formatEthiopianDate } from "@/lib/ethiopian-date";
 import { formatBirr } from "@/lib/money";
 import { addisToday } from "@/lib/room-board";
+import { cn } from "@/lib/utils";
 import { getStay } from "@/server/dal/hotel";
 import { getSession } from "@/server/dal/session";
 import { uuidParam } from "@/server/validation";
@@ -78,6 +80,12 @@ export default async function StayPage({ params }: { params: Promise<{ id: strin
           </dl>
         </CardContent>
       </Card>
+
+      {stay.status === "in_house" || stay.status === "checked_out" ? (
+        <Link href={`/stays/${stay.id}/receipt`} prefetch={false} className={cn(buttonVariants({ variant: "outline" }), "bg-card")}>
+          {t("printReceipt")}
+        </Link>
+      ) : null}
 
       {stay.status === "reserved" && stay.checkIn <= today ? (
         <section className="grid gap-2" aria-labelledby="checkin">

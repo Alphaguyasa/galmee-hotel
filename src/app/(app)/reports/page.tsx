@@ -1,4 +1,8 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Download } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { getLocale, getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/config";
 import { formatEthiopianDate } from "@/lib/ethiopian-date";
@@ -7,9 +11,11 @@ import { addDays, addisToday } from "@/lib/room-board";
 import { dailyReport } from "@/server/dal/hotel";
 import { getSession } from "@/server/dal/session";
 
-const REPORT_DAYS = 14;
+const RANGES = [7, 14, 30] as const;
 
-export default async function ReportsPage() {
+export default async function ReportsPage({ searchParams }: { searchParams: Promise<{ days?: string }> }) {
+  const requested = Number((await searchParams).days);
+  const REPORT_DAYS = RANGES.find((r) => r === requested) ?? 14;
   const { profile } = await getSession();
   if (profile.role === "staff") redirect("/");
   const today = addisToday();
@@ -26,6 +32,22 @@ export default async function ReportsPage() {
   return (
     <div className="grid max-w-3xl gap-4">
       <h1 className="text-2xl font-semibold">{t("title")}</h1>
+      <nav className="flex flex-wrap gap-2" aria-label={t("range")}>
+        {RANGES.map((r) => (
+          <Link
+            key={r}
+            href={`/reports?days=${r}`}
+            aria-current={r === REPORT_DAYS ? "page" : undefined}
+            className={cn(buttonVariants({ variant: r === REPORT_DAYS ? "default" : "outline" }), r !== REPORT_DAYS && "bg-card")}
+          >
+            {t("lastDays", { days: r })}
+          </Link>
+        ))}
+        <a href={`/reports/export?days=${REPORT_DAYS}`} className={cn(buttonVariants({ variant: "outline" }), "bg-card")}>
+          <Download aria-hidden />
+          {t("export")}
+        </a>
+      </nav>
       <dl className="grid grid-cols-2 gap-2">
         <div className="rounded-md border bg-card p-3">
           <dt className="text-sm text-muted-foreground">{t("occupancy", { days: REPORT_DAYS })}</dt>

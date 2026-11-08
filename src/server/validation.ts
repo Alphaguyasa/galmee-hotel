@@ -118,3 +118,13 @@ export const bookingRequestSchema = z
     message: optionalText(500),
   })
   .refine((v) => v.checkOut > v.checkIn, { path: ["checkOut"] });
+
+export const siteSchema = z.object({
+  slug: z.string().trim().toLowerCase().regex(/^[a-z0-9](?:[a-z0-9-]{1,38}[a-z0-9])$/),
+  displayName: z.string().trim().min(2).max(120),
+  headline: optionalText(160),
+  about: optionalText(1200),
+  address: optionalText(240),
+  phone: z.union([z.literal(""), phoneSchema]).transform((v) => v || undefined),
+  published: z.string().transform((v) => v === "on"),
+});

@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import type { ActionState } from "@/actions/stays";
 import * as hotel from "@/server/dal/hotel";
 import { getSession } from "@/server/dal/session";
-import { formToObject, rateSchema, roomSchema, roomTypeSchema, uuidParam } from "@/server/validation";
+import { formToObject, rateSchema, roomSchema, roomTypeSchema, siteSchema, uuidParam } from "@/server/validation";
 
 // RLS already limits these writes to owners and managers; this returns a clear message first.
 async function requireManager(): Promise<boolean> {
@@ -53,4 +53,22 @@ export async function setRoomServiceAction(room: string, inService: boolean): Pr
   if (!uuidParam.safeParse(room).success) return;
   await hotel.setRoomInService(room, inService);
   refresh();
+}
+
+export async function saveSiteAction(_prev: ActionState, formData: FormData): Promise<ActionState> {
+  const { profile, tenant } = await getSession();
+  if (profile.role === "staff") return { error: "not_allowed" };
+  const parsed = siteSchema.safeParse({
+    ...formToObject(formData, ["slug", "displayName", "headline", "about", "address", "phone"]),
+    published: formData.get("published") ?? "off",
+  });
+  if (!parsed.success) {
+    const field = parsed.error.issues[0]?.path[0];
+    return { error: field === "phone" ? "phone" : field === "slug" ? "slug" : "form" };
+  }
+  const result = await hotel.saveSiteSettings(tenant.id, parsed.data);
+  if (!result.ok) return { error: result.error };
+  revalidatePath("/settings");
+  revalidatePath(`/h/${parsed.data.slug}`);
+  return { done: true };
 }

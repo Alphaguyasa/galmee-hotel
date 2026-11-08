@@ -14,7 +14,7 @@
 
 ## M1: Core screens
 
-- [ ] Customers: list, search by name/phone, detail with balance
+- [x] Customers: list, search by name/phone, detail with balance
 - [ ] Items and stock (if this product uses stock): list, add, receive stock
 - [ ] Payments and credit: record payment, credit statement
 - [ ] Reports: today / this week / this Ethiopian month; export CSV
@@ -27,7 +27,7 @@
 - [x] Guest register
 - [x] Extra charges (food, laundry)
 - [x] Daily occupancy and income
-- [ ] Public one-page website with booking request form
+- [x] Public one-page website with booking request form
 - [x] Migration: ht_rooms
 - [x] Migration: ht_room_types
 - [x] Migration: ht_rate_plans
