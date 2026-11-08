@@ -257,6 +257,503 @@ export type Database = {
           },
         ]
       }
+      ht_booking_requests: {
+        Row: {
+          adults: number
+          check_in: string
+          check_out: string
+          created_at: string
+          guest_name: string
+          handled_by: string | null
+          id: string
+          message: string | null
+          phone: string
+          room_type_id: string | null
+          status: string
+          stay_id: string | null
+          tenant_id: string
+        }
+        Insert: {
+          adults?: number
+          check_in: string
+          check_out: string
+          created_at?: string
+          guest_name: string
+          handled_by?: string | null
+          id?: string
+          message?: string | null
+          phone: string
+          room_type_id?: string | null
+          status?: string
+          stay_id?: string | null
+          tenant_id?: string
+        }
+        Update: {
+          adults?: number
+          check_in?: string
+          check_out?: string
+          created_at?: string
+          guest_name?: string
+          handled_by?: string | null
+          id?: string
+          message?: string | null
+          phone?: string
+          room_type_id?: string | null
+          status?: string
+          stay_id?: string | null
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ht_booking_requests_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ht_booking_requests_tenant_id_room_type_id_fkey"
+            columns: ["tenant_id", "room_type_id"]
+            isOneToOne: false
+            referencedRelation: "ht_room_types"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "ht_booking_requests_tenant_id_stay_id_fkey"
+            columns: ["tenant_id", "stay_id"]
+            isOneToOne: false
+            referencedRelation: "ht_stays"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      ht_rate_plans: {
+        Row: {
+          active: boolean
+          created_at: string
+          id: string
+          is_default: boolean
+          name: string
+          nightly_rate: number
+          room_type_id: string
+          tenant_id: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          is_default?: boolean
+          name: string
+          nightly_rate: number
+          room_type_id: string
+          tenant_id?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          is_default?: boolean
+          name?: string
+          nightly_rate?: number
+          room_type_id?: string
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ht_rate_plans_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ht_rate_plans_tenant_id_room_type_id_fkey"
+            columns: ["tenant_id", "room_type_id"]
+            isOneToOne: false
+            referencedRelation: "ht_room_types"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      ht_room_types: {
+        Row: {
+          capacity: number
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          sort_order: number
+          tenant_id: string
+        }
+        Insert: {
+          capacity?: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          sort_order?: number
+          tenant_id?: string
+        }
+        Update: {
+          capacity?: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          sort_order?: number
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ht_room_types_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ht_rooms: {
+        Row: {
+          created_at: string
+          floor: string | null
+          housekeeping: string
+          id: string
+          in_service: boolean
+          notes: string | null
+          number: string
+          room_type_id: string
+          tenant_id: string
+        }
+        Insert: {
+          created_at?: string
+          floor?: string | null
+          housekeeping?: string
+          id?: string
+          in_service?: boolean
+          notes?: string | null
+          number: string
+          room_type_id: string
+          tenant_id?: string
+        }
+        Update: {
+          created_at?: string
+          floor?: string | null
+          housekeeping?: string
+          id?: string
+          in_service?: boolean
+          notes?: string | null
+          number?: string
+          room_type_id?: string
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ht_rooms_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ht_rooms_tenant_id_room_type_id_fkey"
+            columns: ["tenant_id", "room_type_id"]
+            isOneToOne: false
+            referencedRelation: "ht_room_types"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      ht_sites: {
+        Row: {
+          about: string | null
+          address: string | null
+          created_at: string
+          display_name: string
+          headline: string | null
+          phone: string | null
+          published: boolean
+          reception_telegram: string | null
+          slug: string
+          tenant_id: string
+        }
+        Insert: {
+          about?: string | null
+          address?: string | null
+          created_at?: string
+          display_name: string
+          headline?: string | null
+          phone?: string | null
+          published?: boolean
+          reception_telegram?: string | null
+          slug: string
+          tenant_id?: string
+        }
+        Update: {
+          about?: string | null
+          address?: string | null
+          created_at?: string
+          display_name?: string
+          headline?: string | null
+          phone?: string | null
+          published?: boolean
+          reception_telegram?: string | null
+          slug?: string
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ht_sites_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: true
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ht_stay_charges: {
+        Row: {
+          amount: number
+          client_ref: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          kind: string
+          reverses_id: string | null
+          stay_id: string
+          tenant_id: string
+        }
+        Insert: {
+          amount: number
+          client_ref?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          kind: string
+          reverses_id?: string | null
+          stay_id: string
+          tenant_id?: string
+        }
+        Update: {
+          amount?: number
+          client_ref?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          kind?: string
+          reverses_id?: string | null
+          stay_id?: string
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ht_stay_charges_reverses_id_fkey"
+            columns: ["reverses_id"]
+            isOneToOne: true
+            referencedRelation: "ht_stay_charges"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ht_stay_charges_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ht_stay_charges_tenant_id_stay_id_fkey"
+            columns: ["tenant_id", "stay_id"]
+            isOneToOne: false
+            referencedRelation: "ht_stays"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      ht_stay_payments: {
+        Row: {
+          amount: number
+          client_ref: string | null
+          created_at: string
+          id: string
+          payment_id: string
+          stay_id: string
+          tenant_id: string
+        }
+        Insert: {
+          amount: number
+          client_ref?: string | null
+          created_at?: string
+          id?: string
+          payment_id: string
+          stay_id: string
+          tenant_id?: string
+        }
+        Update: {
+          amount?: number
+          client_ref?: string | null
+          created_at?: string
+          id?: string
+          payment_id?: string
+          stay_id?: string
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ht_stay_payments_payment_id_fkey"
+            columns: ["payment_id"]
+            isOneToOne: true
+            referencedRelation: "payments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ht_stay_payments_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ht_stay_payments_tenant_id_stay_id_fkey"
+            columns: ["tenant_id", "stay_id"]
+            isOneToOne: false
+            referencedRelation: "ht_stays"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
+      ht_stays: {
+        Row: {
+          adults: number
+          booking_id: string
+          check_in: string
+          check_out: string
+          checked_in_at: string | null
+          checked_out_at: string | null
+          children: number
+          client_ref: string | null
+          created_at: string
+          created_by: string | null
+          customer_id: string
+          final_balance: number | null
+          final_charges_total: number | null
+          final_paid_total: number | null
+          final_room_total: number | null
+          id: string
+          id_number: string | null
+          id_type: string | null
+          nationality: string | null
+          nightly_rate: number
+          notes: string | null
+          rate_plan_id: string | null
+          room_id: string
+          source: string
+          status: string
+          tenant_id: string
+        }
+        Insert: {
+          adults?: number
+          booking_id: string
+          check_in: string
+          check_out: string
+          checked_in_at?: string | null
+          checked_out_at?: string | null
+          children?: number
+          client_ref?: string | null
+          created_at?: string
+          created_by?: string | null
+          customer_id: string
+          final_balance?: number | null
+          final_charges_total?: number | null
+          final_paid_total?: number | null
+          final_room_total?: number | null
+          id?: string
+          id_number?: string | null
+          id_type?: string | null
+          nationality?: string | null
+          nightly_rate: number
+          notes?: string | null
+          rate_plan_id?: string | null
+          room_id: string
+          source?: string
+          status?: string
+          tenant_id?: string
+        }
+        Update: {
+          adults?: number
+          booking_id?: string
+          check_in?: string
+          check_out?: string
+          checked_in_at?: string | null
+          checked_out_at?: string | null
+          children?: number
+          client_ref?: string | null
+          created_at?: string
+          created_by?: string | null
+          customer_id?: string
+          final_balance?: number | null
+          final_charges_total?: number | null
+          final_paid_total?: number | null
+          final_room_total?: number | null
+          id?: string
+          id_number?: string | null
+          id_type?: string | null
+          nationality?: string | null
+          nightly_rate?: number
+          notes?: string | null
+          rate_plan_id?: string | null
+          room_id?: string
+          source?: string
+          status?: string
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ht_stays_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: true
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ht_stays_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customer_balances"
+            referencedColumns: ["customer_id"]
+          },
+          {
+            foreignKeyName: "ht_stays_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ht_stays_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ht_stays_tenant_id_rate_plan_id_fkey"
+            columns: ["tenant_id", "rate_plan_id"]
+            isOneToOne: false
+            referencedRelation: "ht_rate_plans"
+            referencedColumns: ["tenant_id", "id"]
+          },
+          {
+            foreignKeyName: "ht_stays_tenant_id_room_id_fkey"
+            columns: ["tenant_id", "room_id"]
+            isOneToOne: false
+            referencedRelation: "ht_rooms"
+            referencedColumns: ["tenant_id", "id"]
+          },
+        ]
+      }
       items: {
         Row: {
           active: boolean
@@ -825,6 +1322,100 @@ export type Database = {
           p_vertical: Database["public"]["Enums"]["vertical"]
         }
         Returns: string
+      }
+      ht_add_charge: {
+        Args: {
+          p_amount: number
+          p_client_ref?: string
+          p_description?: string
+          p_kind: string
+          p_stay: string
+        }
+        Returns: string
+      }
+      ht_cancel_stay: {
+        Args: { p_no_show?: boolean; p_stay: string }
+        Returns: undefined
+      }
+      ht_check_in: {
+        Args: {
+          p_id_number?: string
+          p_id_type?: string
+          p_nationality?: string
+          p_stay: string
+        }
+        Returns: undefined
+      }
+      ht_check_out: {
+        Args: {
+          p_amount?: number
+          p_leave_balance?: boolean
+          p_method?: Database["public"]["Enums"]["pay_method"]
+          p_reference?: string
+          p_stay: string
+        }
+        Returns: Json
+      }
+      ht_create_stay: {
+        Args: {
+          p_adults?: number
+          p_check_in: string
+          p_check_in_now?: boolean
+          p_check_out: string
+          p_children?: number
+          p_client_ref?: string
+          p_customer?: string
+          p_guest_name?: string
+          p_guest_phone?: string
+          p_id_number?: string
+          p_id_type?: string
+          p_nationality?: string
+          p_nightly_rate?: number
+          p_notes?: string
+          p_rate_plan?: string
+          p_request?: string
+          p_room: string
+          p_source?: string
+        }
+        Returns: string
+      }
+      ht_daily_report: {
+        Args: { p_from: string; p_to: string }
+        Returns: {
+          arrivals: number
+          day: string
+          departures: number
+          income: number
+          occupied: number
+          rooms: number
+        }[]
+      }
+      ht_decline_request: { Args: { p_request: string }; Returns: undefined }
+      ht_load_demo_data: { Args: never; Returns: number }
+      ht_pay_stay: {
+        Args: {
+          p_amount: number
+          p_client_ref?: string
+          p_method?: Database["public"]["Enums"]["pay_method"]
+          p_reference?: string
+          p_stay: string
+        }
+        Returns: string
+      }
+      ht_reverse_charge: { Args: { p_charge: string }; Returns: string }
+      ht_set_housekeeping: {
+        Args: { p_room: string; p_state: string }
+        Returns: undefined
+      }
+      ht_stay_totals: {
+        Args: { p_stay: string }
+        Returns: {
+          balance: number
+          charges_total: number
+          nights: number
+          paid_total: number
+          room_total: number
+        }[]
       }
       receive_stock: {
         Args: {
