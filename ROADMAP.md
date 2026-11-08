@@ -28,15 +28,15 @@
 - [ ] Extra charges (food, laundry)
 - [ ] Daily occupancy and income
 - [ ] Public one-page website with booking request form
-- [ ] Migration: ht_rooms
-- [ ] Migration: ht_room_types
-- [ ] Migration: ht_rate_plans
-- [ ] Migration: ht_stays
-- [ ] Migration: ht_stay_charges
-- [ ] Migration: ht_booking_requests
-- [ ] Stays use core `bookings` (resource = room): the exclusion constraint already blocks double booking
-- [ ] `ht_check_out` totals charges and payments
-- [ ] Public booking requests via an anon-insert-only table with rate limiting
+- [x] Migration: ht_rooms
+- [x] Migration: ht_room_types
+- [x] Migration: ht_rate_plans
+- [x] Migration: ht_stays
+- [x] Migration: ht_stay_charges
+- [x] Migration: ht_booking_requests
+- [x] Stays use core `bookings` (resource = room): the exclusion constraint already blocks double booking
+- [x] `ht_check_out` totals charges and payments
+- [x] Public booking requests via an anon-insert-only table with rate limiting
 
 ## M3: Notifications
 
@@ -65,7 +65,7 @@
 - [x] Tailwind theme tokens and `next/font` fonts from DESIGN.md
 - [x] `server-only` Data Access Layer in `src/server/dal/`; every Server Action validates with zod and re-checks auth + role
 - [x] Security headers and CSP with nonce (the security guidelines section 5)
-- [ ] Cross-tenant RLS test extended to this product's tables and passing
+- [x] Cross-tenant RLS test extended to this product's tables and passing
 - [x] Playwright screenshot script for 360 px and 1280 px
 - [x] `npm audit` clean, Dependabot active
 - [ ] Self-audit (the security guidelines section 9) recorded in the dev log
