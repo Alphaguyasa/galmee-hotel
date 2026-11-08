@@ -1,0 +1,54 @@
+{
+  "app": {
+    "name": "Galmee Hotel",
+    "tagline": "Never double-book a room again, and take bookings from your own website."
+  },
+  "nav": {
+    "home": "Rooms",
+    "menu": "Main menu"
+  },
+  "common": {
+    "language": "Language",
+    "offline": "You are offline",
+    "offlineBody": "Galmee will reconnect automatically. Charges you add offline will sync when the internet is back.",
+    "retry": "Try again",
+    "today": "Today",
+    "skipToContent": "Skip to content"
+  },
+  "auth": {
+    "loginTitle": "Log in",
+    "signupTitle": "Create your hotel account",
+    "email": "Email",
+    "password": "Password",
+    "passwordHint": "At least 10 characters",
+    "login": "Log in",
+    "signup": "Create account",
+    "logout": "Log out",
+    "noAccount": "New hotel?",
+    "haveAccount": "Already have an account?",
+    "checkEmail": "Check your email and open the link to confirm your account, then log in.",
+    "errorInvalid": "Wrong email or password.",
+    "errorGeneric": "Something went wrong. Please try again.",
+    "errorPassword": "Password must be at least 10 characters.",
+    "errorEmail": "Enter a valid email address."
+  },
+  "onboarding": {
+    "title": "Set up your hotel",
+    "intro": "One last step: tell us about your hotel.",
+    "hotelName": "Hotel name",
+    "fullName": "Your full name",
+    "phone": "Phone number",
+    "submit": "Start using Galmee",
+    "error": "Could not create the hotel. Please try again.",
+    "errorPhone": "Enter an Ethiopian phone number, for example 0911 234 567.",
+    "errorRequired": "Fill in all three fields."
+  },
+  "home": {
+    "welcome": "Welcome, {name}"
+  },
+  "roles": {
+    "owner": "Owner",
+    "manager": "Manager",
+    "staff": "Reception"
+  }
+}

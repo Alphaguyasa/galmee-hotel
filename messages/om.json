@@ -1,0 +1,54 @@
+{
+  "app": {
+    "name": "Galmee Hoteela",
+    "tagline": "Lammata kutaa tokko yeroo lama hin qabsiisin; galmee kee marsariitii mataa keetiirraa fudhadhu."
+  },
+  "nav": {
+    "home": "Kutaalee",
+    "menu": "Baafata guddaa"
+  },
+  "common": {
+    "language": "Afaan",
+    "offline": "Interneetii hin qabdu",
+    "offlineBody": "Galmeen ofumaan deebi'ee wal qunnama. Kaffaltiiwwan interneetii malee galmeessite yeroo interneetiin deebi'u ni ergamu.",
+    "retry": "Irra deebi'ii yaali",
+    "today": "Har'a",
+    "skipToContent": "Gara qabiyyeetti darbi"
+  },
+  "auth": {
+    "loginTitle": "Seeni",
+    "signupTitle": "Herrega hoteela kee uumi",
+    "email": "Imeelii",
+    "password": "Jecha icciitii",
+    "passwordHint": "Yoo xiqqaate arfiilee 10",
+    "login": "Seeni",
+    "signup": "Herrega uumi",
+    "logout": "Ba'i",
+    "noAccount": "Hoteela haaraa?",
+    "haveAccount": "Herrega qabdaa?",
+    "checkEmail": "Imeelii kee banii herrega kee mirkaneessuuf liinkicha cuqaasi, sana booda seeni.",
+    "errorInvalid": "Imeelii ykn jechi icciitii dogoggora.",
+    "errorGeneric": "Rakkoon uumame. Maaloo irra deebi'ii yaali.",
+    "errorPassword": "Jechi icciitii yoo xiqqaate arfiilee 10 ta'uu qaba.",
+    "errorEmail": "Imeelii sirrii galchi."
+  },
+  "onboarding": {
+    "title": "Hoteela kee qopheessi",
+    "intro": "Tarkaanfii dhumaa: waa'ee hoteela keetii nutti himi.",
+    "hotelName": "Maqaa hoteelaa",
+    "fullName": "Maqaa kee guutuu",
+    "phone": "Lakkoofsa bilbilaa",
+    "submit": "Galmee fayyadamuu jalqabi",
+    "error": "Hoteela uumuun hin danda'amne. Maaloo irra deebi'ii yaali.",
+    "errorPhone": "Lakkoofsa bilbila Itoophiyaa galchi, fkn 0911 234 567.",
+    "errorRequired": "Bakkeewwan sadanuu guuti."
+  },
+  "home": {
+    "welcome": "Baga nagaan dhufte, {name}"
+  },
+  "roles": {
+    "owner": "Abbaa qabeenyaa",
+    "manager": "Hoogganaa",
+    "staff": "Simannaa"
+  }
+}
