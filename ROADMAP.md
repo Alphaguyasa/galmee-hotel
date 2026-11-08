@@ -46,7 +46,7 @@
 
 ## M4: Demo ready
 
-- [ ] Demo tenant "Galmee Hotel Demo" with data: A 20-room guesthouse, 3 room types, 2 weeks of stays
+- [x] Demo tenant "Galmee Hotel Demo" with data: A 20-room guesthouse, 3 room types, 2 weeks of stays
 - [ ] Demo login documented in the decision log for Alpha (password set by Alpha, never committed)
 - [ ] 5-minute demo path works on a phone in airplane mode for the main action
 - [ ] Amharic and Afaan Oromo text reviewed list in the decision log for Alpha (native speaker)
