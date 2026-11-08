@@ -87,3 +87,11 @@
     }
   }
 }
+
+/* Room board textures: status is never colour alone (docs/DESIGN.md). */
+.board-hatch {
+  background-image: repeating-linear-gradient(135deg, var(--brass) 0 2px, transparent 2px 6px);
+}
+.board-stripes {
+  background-image: repeating-linear-gradient(135deg, var(--rule) 0 6px, var(--muted) 6px 12px);
+}

@@ -10,7 +10,7 @@
 - [x] Ethiopian calendar date display helper + tests
 - [x] App shell: bottom navigation on mobile, sidebar on desktop, tenant name and logo
 - [ ] Staff management (owner only): invite staff, set role
-- [ ] Generated Supabase TypeScript types committed
+- [x] Generated Supabase TypeScript types committed
 
 ## M1: Core screens
 
@@ -22,10 +22,10 @@
 
 ## M2: Galmee Hotel features
 
-- [ ] Room board: grid of rooms by day, colour by status
-- [ ] Check-in / check-out
+- [x] Room board: grid of rooms by day, colour by status
+- [x] Check-in / check-out
 - [ ] Guest register
-- [ ] Extra charges (food, laundry)
+- [x] Extra charges (food, laundry)
 - [ ] Daily occupancy and income
 - [ ] Public one-page website with booking request form
 - [x] Migration: ht_rooms

@@ -22,7 +22,7 @@ export function AppNav({ variant }: { variant: "bottom" | "side" }) {
       aria-label={t("menu")}
       className={cn(
         variant === "bottom"
-          ? "fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t bg-card pb-[env(safe-area-inset-bottom)] md:hidden"
+          ? "fixed inset-x-0 bottom-0 z-40 grid grid-flow-col auto-cols-fr border-t bg-card pb-[env(safe-area-inset-bottom)] md:hidden"
           : "hidden flex-col gap-1 md:flex",
       )}
     >

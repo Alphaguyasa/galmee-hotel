@@ -53,3 +53,26 @@ export function placeStays<T extends BoardStay>(stays: T[], windowStart: string,
   for (const bars of byRoom.values()) bars.sort((a, b) => a.column - b.column);
   return byRoom;
 }
+
+export type BoardStatus = "reserved" | "in_house" | "checked_out";
+
+export type SummaryStay = { checkIn: string; checkOut: string; status: BoardStatus };
+
+export type BoardSummary = { inHouse: number; arrivals: number; dueOut: number; freeTonight: number };
+
+/** The four numbers reception reads first. A room leaving today is free tonight. */
+export function boardSummary(stays: SummaryStay[], today: string, roomsInService: number): BoardSummary {
+  let inHouse = 0;
+  let arrivals = 0;
+  let dueOut = 0;
+  let takenTonight = 0;
+  for (const s of stays) {
+    if (s.status === "in_house") {
+      inHouse += 1;
+      if (s.checkOut <= today) dueOut += 1;
+    }
+    if (s.status === "reserved" && s.checkIn === today) arrivals += 1;
+    if (s.status !== "checked_out" && s.checkIn <= today && s.checkOut > today) takenTonight += 1;
+  }
+  return { inHouse, arrivals, dueOut, freeTonight: Math.max(roomsInService - takenTonight, 0) };
+}

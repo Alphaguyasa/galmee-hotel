@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addDays, addisToday, dayRange, placeStays } from "./room-board";
+import { addDays, addisToday, boardSummary, dayRange, placeStays } from "./room-board";
 
 const stay = (id: string, checkIn: string, checkOut: string, roomId = "r1") => ({ id, roomId, checkIn, checkOut });
 
@@ -52,5 +52,26 @@ describe("placeStays", () => {
   it("keeps rooms separate", () => {
     const placed = placeStays([stay("a", start, "2026-11-09", "r1"), stay("b", start, "2026-11-09", "r2")], start, 14);
     expect([...placed.keys()].sort()).toEqual(["r1", "r2"]);
+  });
+});
+
+describe("boardSummary", () => {
+  const today = "2026-11-08";
+  it("counts in-house, arrivals and rooms due out", () => {
+    const s = boardSummary(
+      [
+        { checkIn: "2026-11-06", checkOut: "2026-11-08", status: "in_house" },
+        { checkIn: "2026-11-07", checkOut: "2026-11-10", status: "in_house" },
+        { checkIn: "2026-11-08", checkOut: "2026-11-09", status: "reserved" },
+        { checkIn: "2026-11-01", checkOut: "2026-11-03", status: "checked_out" },
+      ],
+      today,
+      5,
+    );
+    expect(s).toEqual({ inHouse: 2, arrivals: 1, dueOut: 1, freeTonight: 3 });
+  });
+  it("never goes below zero free rooms", () => {
+    const s = boardSummary([{ checkIn: today, checkOut: "2026-11-09", status: "reserved" }], today, 0);
+    expect(s.freeTonight).toBe(0);
   });
 });
