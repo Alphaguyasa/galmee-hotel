@@ -126,5 +126,10 @@ export const siteSchema = z.object({
   about: optionalText(1200),
   address: optionalText(240),
   phone: z.union([z.literal(""), phoneSchema]).transform((v) => v || undefined),
+  receptionTelegram: z
+    .string()
+    .trim()
+    .regex(/^(-?\d{5,20})?$/)
+    .transform((v) => v || undefined),
   published: z.string().transform((v) => v === "on"),
 });

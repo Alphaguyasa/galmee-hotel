@@ -59,12 +59,12 @@ export async function saveSiteAction(_prev: ActionState, formData: FormData): Pr
   const { profile, tenant } = await getSession();
   if (profile.role === "staff") return { error: "not_allowed" };
   const parsed = siteSchema.safeParse({
-    ...formToObject(formData, ["slug", "displayName", "headline", "about", "address", "phone"]),
+    ...formToObject(formData, ["slug", "displayName", "headline", "about", "address", "phone", "receptionTelegram"]),
     published: formData.get("published") ?? "off",
   });
   if (!parsed.success) {
     const field = parsed.error.issues[0]?.path[0];
-    return { error: field === "phone" ? "phone" : field === "slug" ? "slug" : "form" };
+    return { error: field === "phone" ? "phone" : field === "slug" ? "slug" : field === "receptionTelegram" ? "telegram" : "form" };
   }
   const result = await hotel.saveSiteSettings(tenant.id, parsed.data);
   if (!result.ok) return { error: result.error };

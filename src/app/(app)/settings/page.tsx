@@ -139,6 +139,11 @@ export default async function SettingsPage() {
             <Label htmlFor="sitePhone">{t("phone")}</Label>
             <Input id="sitePhone" name="phone" type="tel" inputMode="tel" defaultValue={site?.phone ?? ""} autoComplete="off" />
           </div>
+          <div className="grid gap-2">
+            <Label htmlFor="receptionTelegram">{t("telegram")}</Label>
+            <Input id="receptionTelegram" name="receptionTelegram" inputMode="numeric" defaultValue={site?.receptionTelegram ?? ""} autoComplete="off" maxLength={21} aria-describedby="telegram-hint" />
+            <p id="telegram-hint" className="text-sm text-muted-foreground">{t("telegramHint")}</p>
+          </div>
           <label className="flex min-h-12 items-center gap-3">
             <input type="checkbox" name="published" defaultChecked={site?.published ?? false} className="size-5 accent-[var(--night)]" />
             <span>{t("published")}</span>

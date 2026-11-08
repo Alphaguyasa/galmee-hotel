@@ -187,7 +187,8 @@
     "rate_limited": "Gaaffiin baay'ateera. Sa'aatii tokko booda yaali.",
     "room_exists": "Lakkoofsi kutaa kun duraan jira.",
     "slug": "Teessoof qubee xixiqqoo, lakkoofsa fi sarara fayyadami.",
-    "slug_taken": "Teessoon kun qabameera. Kan biraa yaali."
+    "slug_taken": "Teessoon kun qabameera. Kan biraa yaali.",
+    "telegram": "Lakkoofsa chaatii Telegram lakkoofsaan qofa galchi."
   },
   "guests": {
     "title": "Galmee keessummootaa",
@@ -252,7 +253,9 @@
     "about": "Waa'ee hoteelaa (yoo jiraate)",
     "address": "Teessoo (yoo jiraate)",
     "phone": "Bilbila (yoo jiraate)",
-    "published": "Marsariitii ummataaf agarsiisi"
+    "published": "Marsariitii ummataaf agarsiisi",
+    "telegram": "Lakkoofsa chaatii Telegram simataa (yoo jiraate)",
+    "telegramHint": "Gaaffileen marsariitii chaatii Telegram kanatti ergamu."
   },
   "site": {
     "rooms": "Kutaalee",

@@ -187,7 +187,8 @@
     "rate_limited": "Too many requests. Please try again in an hour.",
     "room_exists": "A room with that number already exists.",
     "slug": "Use small letters, numbers and dashes for the web address.",
-    "slug_taken": "That web address is taken. Try another."
+    "slug_taken": "That web address is taken. Try another.",
+    "telegram": "Enter the Telegram chat ID as digits only."
   },
   "guests": {
     "title": "Guest register",
@@ -252,7 +253,9 @@
     "about": "About the hotel (optional)",
     "address": "Address (optional)",
     "phone": "Phone (optional)",
-    "published": "Show the website to the public"
+    "published": "Show the website to the public",
+    "telegram": "Reception Telegram chat ID (optional)",
+    "telegramHint": "Website requests are sent to this Telegram chat."
   },
   "site": {
     "rooms": "Rooms",

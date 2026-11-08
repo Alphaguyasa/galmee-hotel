@@ -435,6 +435,7 @@ export type SiteSettingsDTO = {
   about: string | null;
   address: string | null;
   phone: string | null;
+  receptionTelegram: string | null;
   published: boolean;
 };
 
@@ -442,7 +443,7 @@ export async function getSiteSettings(): Promise<SiteSettingsDTO | null> {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("ht_sites")
-    .select("slug, display_name, headline, about, address, phone, published")
+    .select("slug, display_name, headline, about, address, phone, reception_telegram, published")
     .maybeSingle();
   if (error) throw new Error("site_unavailable");
   if (!data) return null;
@@ -453,13 +454,14 @@ export async function getSiteSettings(): Promise<SiteSettingsDTO | null> {
     about: data.about,
     address: data.address,
     phone: data.phone,
+    receptionTelegram: data.reception_telegram,
     published: data.published,
   };
 }
 
 export async function saveSiteSettings(
   tenantId: string,
-  input: { slug: string; displayName: string; headline?: string; about?: string; address?: string; phone?: string; published: boolean },
+  input: { slug: string; displayName: string; headline?: string; about?: string; address?: string; phone?: string; receptionTelegram?: string; published: boolean },
 ): Promise<MutationResult> {
   const supabase = await createClient();
   const { error } = await supabase.from("ht_sites").upsert(
@@ -471,6 +473,7 @@ export async function saveSiteSettings(
       about: input.about ?? null,
       address: input.address ?? null,
       phone: input.phone ?? null,
+      reception_telegram: input.receptionTelegram ?? null,
       published: input.published,
     },
     { onConflict: "tenant_id" },
