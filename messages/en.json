@@ -210,8 +210,8 @@
   },
   "reports": {
     "title": "Occupancy and income",
-    "occupancy": "Occupancy, last {days} days",
-    "income": "Income, last {days} days",
+    "occupancy": "Occupancy",
+    "income": "Income",
     "date": "Date",
     "occupied": "Rooms",
     "arrivals": "In",
@@ -219,7 +219,11 @@
     "incomeColumn": "Income",
     "range": "Date range",
     "lastDays": "{days} days",
-    "export": "Download CSV"
+    "export": "Download CSV",
+    "today": "Today",
+    "thisWeek": "This week",
+    "thisMonth": "This month",
+    "period": "{from} to {to}"
   },
   "settings": {
     "title": "Setup",

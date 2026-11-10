@@ -210,8 +210,8 @@
   },
   "reports": {
     "title": "Guutinsa kutaa fi galii",
-    "occupancy": "Guutinsa, guyyoota {days} darban",
-    "income": "Galii, guyyoota {days} darban",
+    "occupancy": "Guutinsa",
+    "income": "Galii",
     "date": "Guyyaa",
     "occupied": "Kutaalee",
     "arrivals": "Galan",
@@ -219,7 +219,11 @@
     "incomeColumn": "Galii",
     "range": "Daangaa guyyaa",
     "lastDays": "Guyyaa {days}",
-    "export": "CSV buufadhu"
+    "export": "CSV buufadhu",
+    "today": "Har'a",
+    "thisWeek": "Torban kana",
+    "thisMonth": "Ji'a kana",
+    "period": "{from} hanga {to}"
   },
   "settings": {
     "title": "Qindeessi",

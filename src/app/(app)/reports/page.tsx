@@ -7,20 +7,18 @@ import { getLocale, getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/config";
 import { formatEthiopianDate } from "@/lib/ethiopian-date";
 import { formatBirr } from "@/lib/money";
-import { addDays, addisToday } from "@/lib/room-board";
+import { addisToday } from "@/lib/room-board";
+import { REPORT_RANGES, parseReportRange, reportRangeDates, type ReportRange } from "@/lib/report-range";
 import { dailyReport } from "@/server/dal/hotel";
 import { getSession } from "@/server/dal/session";
 
-const RANGES = [7, 14, 30] as const;
-
-export default async function ReportsPage({ searchParams }: { searchParams: Promise<{ days?: string }> }) {
-  const requested = Number((await searchParams).days);
-  const REPORT_DAYS = RANGES.find((r) => r === requested) ?? 14;
+export default async function ReportsPage({ searchParams }: { searchParams: Promise<{ range?: string }> }) {
+  const range = parseReportRange((await searchParams).range);
   const { profile } = await getSession();
   if (profile.role === "staff") redirect("/");
-  const today = addisToday();
+  const { from, to } = reportRangeDates(range, addisToday());
   const [days, t, locale] = await Promise.all([
-    dailyReport(addDays(today, -(REPORT_DAYS - 1)), today),
+    dailyReport(from, to),
     getTranslations("reports"),
     getLocale() as Promise<Locale>,
   ]);
@@ -33,28 +31,33 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
     <div className="grid max-w-3xl gap-4">
       <h1 className="text-2xl font-semibold">{t("title")}</h1>
       <nav className="flex flex-wrap gap-2" aria-label={t("range")}>
-        {RANGES.map((r) => (
+        {REPORT_RANGES.map((r) => (
           <Link
             key={r}
-            href={`/reports?days=${r}`}
-            aria-current={r === REPORT_DAYS ? "page" : undefined}
-            className={cn(buttonVariants({ variant: r === REPORT_DAYS ? "default" : "outline" }), r !== REPORT_DAYS && "bg-card")}
+            href={`/reports?range=${r}`}
+            aria-current={r === range ? "page" : undefined}
+            className={cn(buttonVariants({ variant: r === range ? "default" : "outline" }), r !== range && "bg-card")}
           >
-            {t("lastDays", { days: r })}
+            {rangeLabel(r, t)}
           </Link>
         ))}
-        <a href={`/reports/export?days=${REPORT_DAYS}`} className={cn(buttonVariants({ variant: "outline" }), "bg-card")}>
+        <a href={`/reports/export?range=${range}`} className={cn(buttonVariants({ variant: "outline" }), "bg-card")}>
           <Download aria-hidden />
           {t("export")}
         </a>
       </nav>
+      <p className="text-sm text-muted-foreground">
+        {from === to
+          ? formatEthiopianDate(from, locale)
+          : t("period", { from: formatEthiopianDate(from, locale, { withEra: false }), to: formatEthiopianDate(to, locale) })}
+      </p>
       <dl className="grid grid-cols-2 gap-2">
         <div className="rounded-md border bg-card p-3">
-          <dt className="text-sm text-muted-foreground">{t("occupancy", { days: REPORT_DAYS })}</dt>
+          <dt className="text-sm text-muted-foreground">{t("occupancy")}</dt>
           <dd className="num text-2xl font-semibold">{occupancy}%</dd>
         </div>
         <div className="rounded-md border bg-card p-3">
-          <dt className="text-sm text-muted-foreground">{t("income", { days: REPORT_DAYS })}</dt>
+          <dt className="text-sm text-muted-foreground">{t("income")}</dt>
           <dd className="num text-2xl font-semibold">{formatBirr(income, locale)}</dd>
         </div>
       </dl>
@@ -84,4 +87,11 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
       </div>
     </div>
   );
+}
+
+function rangeLabel(range: ReportRange, t: (key: string, values?: Record<string, number>) => string) {
+  if (range === "today") return t("today");
+  if (range === "week") return t("thisWeek");
+  if (range === "month") return t("thisMonth");
+  return t("lastDays", { days: Number(range) });
 }

@@ -210,8 +210,8 @@
   },
   "reports": {
     "title": "የክፍል ሙሌት እና ገቢ",
-    "occupancy": "ሙሌት፣ ያለፉት {days} ቀናት",
-    "income": "ገቢ፣ ያለፉት {days} ቀናት",
+    "occupancy": "ሙሌት",
+    "income": "ገቢ",
     "date": "ቀን",
     "occupied": "ክፍሎች",
     "arrivals": "ገቡ",
@@ -219,7 +219,11 @@
     "incomeColumn": "ገቢ",
     "range": "የቀን ክልል",
     "lastDays": "{days} ቀናት",
-    "export": "CSV አውርድ"
+    "export": "CSV አውርድ",
+    "today": "ዛሬ",
+    "thisWeek": "ይህ ሳምንት",
+    "thisMonth": "ይህ ወር",
+    "period": "ከ{from} እስከ {to}"
   },
   "settings": {
     "title": "ማዋቀር",
