@@ -1,5 +1,25 @@
 # ROADMAP: Galmee Hotel
 
+Build order: M-next first, then M-after, then the remaining open items below.
+
+## M-next: Tier 1 close-out
+
+- [ ] Checkout receipt layout (folio: nights, charges, payments)
+- [ ] Print + Telegram receipt flow
+- [ ] Telegram-to-reception message on each booking request (alert row exists; write the message body)
+- [ ] SMS confirmation to guest on confirm
+
+## M-after: Tier 2 and 3
+
+- [ ] Offline queue for stay payments and check-in
+- [ ] Rate plan management screen (seasonal prices)
+- [ ] Monthly occupancy and revenue report, CSV
+- [ ] Company/credit statements on the shared credit ledger
+- [ ] Staff invite and role gates
+- [ ] Export all tenant data to Excel
+
+Not planned for now: bar/restaurant stock. Extra charges (food, laundry) cover it.
+
 ## M0: Foundation (shared pattern for all Galmee products)
 
 - [x] Next.js App Router + TS + Tailwind + shadcn/ui scaffold; `npm run build` passes
@@ -15,7 +35,6 @@
 ## M1: Core screens
 
 - [x] Customers: list, search by name/phone, detail with balance
-- [ ] Items and stock (if this product uses stock): list, add, receive stock
 - [ ] Payments and credit: record payment, credit statement
 - [x] Reports: today / this week / this Ethiopian month; export CSV
 - [ ] Offline queue for the main money action with sync status indicator
@@ -41,7 +60,7 @@
 ## M3: Notifications
 
 - [ ] Telegram to reception for each website booking request
-- [ ] SMS confirmation to guest
+- [ ] SMS confirmation to guest (one template, sent on confirm; no scheduling)
 - [ ] Edge Function reads `notifications` queue and sends (needs AfroMessage/Telegram keys: ask in the decision log)
 
 ## M4: Demo ready
