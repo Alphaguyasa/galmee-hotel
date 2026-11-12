@@ -2,6 +2,13 @@
 
 Change this file first, then the code.
 
+> Hotel uses the **Galmee design system**. Tokens live in `src/app/globals.css`
+> (only `--trade`, night-porter blue `#232C5E`, plus the room board's `--night`
+> and `--brass` names are hotel-specific), shared components in
+> `src/components/galmee/`. Type is now Atkinson Hyperlegible Next with Noto Sans
+> Ethiopic. The colour and type tables below are superseded by the system; the
+> brief, the key-rack room board and the screen wireframes still hold.
+
 ## Brief
 
 - **Subject:** the front desk of a small guesthouse in Shashamane. A rack of room keys on brass hooks, a paper register, a receptionist answering the phone while a guest waits.
