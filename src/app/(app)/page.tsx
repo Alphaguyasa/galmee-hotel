@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
-import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import { BedDouble, ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import { loadDemoDataAction, markRoomCleanAction } from "@/actions/stays";
+import { EmptyState } from "@/components/galmee/empty-state";
+import { MoneySummaryCard } from "@/components/galmee/money-summary-card";
 import { ActionForm } from "@/components/hotel/action-form";
 import { BOARD_DAYS, RoomBoard } from "@/components/hotel/room-board";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -31,9 +33,18 @@ export default async function BoardPage({ searchParams }: { searchParams: Promis
   if (rooms.length === 0) {
     return (
       <div className="grid max-w-md gap-3">
-        <h1 className="text-2xl font-semibold">{t("title")}</h1>
-        <p className="text-muted-foreground">{t("emptyBody")}</p>
-        {profile.role !== "staff" ? <Link href="/settings" className={buttonVariants({ size: "lg" })}>{t("setupRooms")}</Link> : null}
+        <h1 className="text-[1.5625rem] leading-tight font-bold">{t("title")}</h1>
+        <EmptyState
+          icon={BedDouble}
+          message={t("emptyBody")}
+          action={
+            profile.role !== "staff" ? (
+              <Link href="/settings" className={buttonVariants({ size: "lg" })}>
+                {t("setupRooms")}
+              </Link>
+            ) : undefined
+          }
+        />
         {tenant.name === DEMO_TENANT && profile.role === "owner" ? (
           <ActionForm action={loadDemoDataAction} submitLabel={t("loadDemo")} />
         ) : null}
@@ -47,7 +58,6 @@ export default async function BoardPage({ searchParams }: { searchParams: Promis
     { label: t("inHouse"), value: summary.inHouse },
     { label: t("arrivals"), value: summary.arrivals },
     { label: t("dueOut"), value: summary.dueOut },
-    { label: t("freeTonight"), value: summary.freeTonight },
   ];
   const windowed = stays.filter((s) => s.checkIn < addDays(from, BOARD_DAYS) && s.checkOut > from);
   const dirtyRooms = rooms.filter((r) => r.dirty && r.inService);
@@ -56,7 +66,7 @@ export default async function BoardPage({ searchParams }: { searchParams: Promis
   return (
     <div className="grid gap-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h1 className="num text-xl font-semibold">{formatEthiopianDate(from, locale)}</h1>
+        <h1 className="num text-[1.5625rem] leading-tight font-bold">{formatEthiopianDate(from, locale)}</h1>
         <div className="flex items-center gap-2">
           <Link href={`/?from=${addDays(from, -7)}`} className={navClass} aria-label={t("previous")}>
             <ChevronLeft aria-hidden />
@@ -70,14 +80,17 @@ export default async function BoardPage({ searchParams }: { searchParams: Promis
         </div>
       </div>
 
-      <dl className="grid grid-cols-4 gap-2">
-        {stats.map((s) => (
-          <div key={s.label} className="rounded-md border bg-card p-2">
-            <dt className="text-xs leading-tight text-muted-foreground">{s.label}</dt>
-            <dd className="num text-xl font-semibold">{s.value}</dd>
-          </div>
-        ))}
-      </dl>
+      <div className="grid gap-2 sm:grid-cols-[minmax(0,14rem)_1fr]">
+        <MoneySummaryCard label={t("freeTonight")} figure={String(summary.freeTonight)} sub={t("ofRooms", { count: inService })} />
+        <dl className="grid grid-cols-3 divide-x rounded-md border bg-card">
+          {stats.map((s) => (
+            <div key={s.label} className="grid content-center gap-0.5 p-3">
+              <dt className="text-sm leading-tight text-muted-foreground">{s.label}</dt>
+              <dd className="num text-[1.5625rem] leading-tight font-bold">{s.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
 
       <RoomBoard rooms={rooms} stays={windowed} days={dayRange(from, BOARD_DAYS)} today={today} locale={locale} />
 

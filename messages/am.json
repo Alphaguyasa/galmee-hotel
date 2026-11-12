@@ -82,7 +82,8 @@
     "newStay": "አዲስ ቆይታ",
     "cleaningTitle": "መጽዳት ያለባቸው ክፍሎች",
     "markClean": "ክፍል {room} ጸድቷል",
-    "setupRooms": "ክፍሎችን አዋቅር"
+    "setupRooms": "ክፍሎችን አዋቅር",
+    "ofRooms": "ከ{count} ክፍሎች"
   },
   "stay": {
     "newTitle": "አዲስ ቆይታ",

@@ -52,7 +52,7 @@ export default async function StayPage({ params }: { params: Promise<{ id: strin
         <p className="text-sm text-muted-foreground">
           {t("roomLine", { number: stay.roomNumber, type: stay.roomTypeName })}
         </p>
-        <h1 className="text-2xl font-semibold">{stay.guestName}</h1>
+        <h1 className="text-[1.5625rem] leading-tight font-bold">{stay.guestName}</h1>
         <p className="num">
           {formatEthiopianDate(stay.checkIn, locale)} → {formatEthiopianDate(stay.checkOut, locale)}
         </p>

@@ -42,7 +42,7 @@ export default async function NewStayPage({ searchParams }: { searchParams: Prom
 
   return (
     <div className="grid max-w-md gap-4">
-      <h1 className="text-2xl font-semibold">{t("newTitle")}</h1>
+      <h1 className="text-[1.5625rem] leading-tight font-bold">{t("newTitle")}</h1>
       <ActionForm action={createStayAction} submitLabel={t("save")}>
         <input type="hidden" name="clientRef" value={randomUUID()} />
         <input type="hidden" name="request" value={request?.id ?? ""} />

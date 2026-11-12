@@ -23,7 +23,7 @@ export default async function SettingsPage() {
   ]);
   return (
     <div className="grid max-w-xl gap-6">
-      <h1 className="text-2xl font-semibold">{t("title")}</h1>
+      <h1 className="text-[1.5625rem] leading-tight font-bold">{t("title")}</h1>
 
       <section className="grid gap-3" aria-labelledby="types">
         <h2 id="types" className="text-lg font-semibold">{t("roomTypes")}</h2>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Download } from "lucide-react";
+import { MoneySummaryCard } from "@/components/galmee/money-summary-card";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -29,7 +30,7 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
   const occupancy = capacity ? Math.round((nights / capacity) * 100) : 0;
   return (
     <div className="grid max-w-3xl gap-4">
-      <h1 className="text-2xl font-semibold">{t("title")}</h1>
+      <h1 className="text-[1.5625rem] leading-tight font-bold">{t("title")}</h1>
       <nav className="flex flex-wrap gap-2" aria-label={t("range")}>
         {REPORT_RANGES.map((r) => (
           <Link
@@ -51,16 +52,15 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
           ? formatEthiopianDate(from, locale)
           : t("period", { from: formatEthiopianDate(from, locale, { withEra: false }), to: formatEthiopianDate(to, locale) })}
       </p>
-      <dl className="grid grid-cols-2 gap-2">
-        <div className="rounded-md border bg-card p-3">
-          <dt className="text-sm text-muted-foreground">{t("occupancy")}</dt>
-          <dd className="num text-2xl font-semibold">{occupancy}%</dd>
-        </div>
-        <div className="rounded-md border bg-card p-3">
-          <dt className="text-sm text-muted-foreground">{t("income")}</dt>
-          <dd className="num text-2xl font-semibold">{formatBirr(income, locale)}</dd>
-        </div>
-      </dl>
+      <div className="grid gap-2 sm:grid-cols-2">
+        <MoneySummaryCard label={t("income")} figure={formatBirr(income, locale)} tone="in" />
+        <MoneySummaryCard
+          label={t("occupancy")}
+          figure={`${occupancy}%`}
+          sub={`${nights}/${capacity}`}
+          size="md"
+        />
+      </div>
       <div className="overflow-x-auto rounded-md border bg-card" role="region" aria-label={t("title")} tabIndex={0}>
         <table className="num w-full text-sm">
           <thead>

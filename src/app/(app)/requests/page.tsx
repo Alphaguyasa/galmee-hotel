@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
+import { Inbox } from "lucide-react";
 import { declineRequestAction } from "@/actions/stays";
+import { EmptyState } from "@/components/galmee/empty-state";
 import { Button, buttonVariants } from "@/components/ui/button";
 import type { Locale } from "@/i18n/config";
 import { formatEthiopianDate } from "@/lib/ethiopian-date";
@@ -10,9 +12,9 @@ export default async function RequestsPage() {
   const [requests, t, locale] = await Promise.all([listNewRequests(), getTranslations("requests"), getLocale() as Promise<Locale>]);
   return (
     <div className="grid max-w-xl gap-4">
-      <h1 className="text-2xl font-semibold">{t("title")}</h1>
+      <h1 className="text-[1.5625rem] leading-tight font-bold">{t("title")}</h1>
       {requests.length === 0 ? (
-        <p className="text-muted-foreground">{t("empty")}</p>
+        <EmptyState icon={Inbox} message={t("empty")} />
       ) : (
         <ul className="grid gap-3">
           {requests.map((r) => (

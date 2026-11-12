@@ -82,7 +82,8 @@
     "newStay": "Turtii haaraa",
     "cleaningTitle": "Kutaalee qulqullaa'uu qaban",
     "markClean": "Kutaan {room} qulqulluu dha",
-    "setupRooms": "Kutaalee qindeessi"
+    "setupRooms": "Kutaalee qindeessi",
+    "ofRooms": "kutaalee {count} keessaa"
   },
   "stay": {
     "newTitle": "Turtii haaraa",

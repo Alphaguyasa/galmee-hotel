@@ -82,7 +82,8 @@
     "newStay": "New stay",
     "cleaningTitle": "Rooms to clean",
     "markClean": "Room {room} is clean",
-    "setupRooms": "Set up rooms"
+    "setupRooms": "Set up rooms",
+    "ofRooms": "of {count} rooms"
   },
   "stay": {
     "newTitle": "New stay",

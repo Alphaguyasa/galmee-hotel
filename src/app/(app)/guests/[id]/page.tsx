@@ -20,7 +20,7 @@ export default async function GuestPage({ params }: { params: Promise<{ id: stri
   return (
     <div className="grid max-w-xl gap-4">
       <header className="grid gap-1">
-        <h1 className="text-2xl font-semibold">{guest.name}</h1>
+        <h1 className="text-[1.5625rem] leading-tight font-bold">{guest.name}</h1>
         {guest.phone ? (
           <a href={`tel:${guest.phone}`} className="num w-fit text-primary underline underline-offset-4">
             {guest.phone}
