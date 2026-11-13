@@ -161,7 +161,14 @@
     "noShow": "The guest did not arrive",
     "receipt": "Receipt",
     "print": "Print",
-    "printReceipt": "Print receipt"
+    "printReceipt": "Print receipt",
+    "receiptNo": "No. {ref}",
+    "roomTotal": "Room",
+    "extras": "Extras",
+    "paidOn": "Paid {date}",
+    "thanks": "Thank you for staying with us",
+    "sendTelegram": "Send on Telegram",
+    "receiptHint": "Print it for the guest or send it on Telegram."
   },
   "errors": {
     "generic": "Something went wrong. Please try again.",

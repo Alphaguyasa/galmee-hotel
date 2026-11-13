@@ -161,7 +161,14 @@
     "noShow": "እንግዳው አልመጣም",
     "receipt": "ደረሰኝ",
     "print": "አትም",
-    "printReceipt": "ደረሰኝ አትም"
+    "printReceipt": "ደረሰኝ አትም",
+    "receiptNo": "ቁጥር {ref}",
+    "roomTotal": "የክፍል ኪራይ",
+    "extras": "ተጨማሪ",
+    "paidOn": "የተከፈለ {date}",
+    "thanks": "ስለመረጡን እናመሰግናለን",
+    "sendTelegram": "በቴሌግራም ላክ",
+    "receiptHint": "ለእንግዳው ያትሙ ወይም በቴሌግራም ይላኩ።"
   },
   "errors": {
     "generic": "ችግር ተፈጥሯል። እባክዎ እንደገና ይሞክሩ።",

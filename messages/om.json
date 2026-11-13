@@ -161,7 +161,14 @@
     "noShow": "Keessummaan hin dhufne",
     "receipt": "Nagahee",
     "print": "Maxxansi",
-    "printReceipt": "Nagahee maxxansi"
+    "printReceipt": "Nagahee maxxansi",
+    "receiptNo": "Lakk. {ref}",
+    "roomTotal": "Kiraa kutaa",
+    "extras": "Dabalataa",
+    "paidOn": "Kaffalame {date}",
+    "thanks": "Nu filattaniif galatoomaa",
+    "sendTelegram": "Telegiraamiin ergi",
+    "receiptHint": "Keessummaaf maxxansaa ykn Telegiraamiin ergaa."
   },
   "errors": {
     "generic": "Rakkoon uumameera. Maaloo irra deebi'ii yaali.",
