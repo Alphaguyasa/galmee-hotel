@@ -4,8 +4,8 @@ Build order: M-next first, then M-after, then the remaining open items below.
 
 ## M-next: Tier 1 close-out
 
-- [ ] Checkout receipt layout (folio: nights, charges, payments)
-- [ ] Print + Telegram receipt flow
+- [x] Checkout receipt layout (folio: nights, charges, payments)
+- [x] Print + Telegram receipt flow
 - [ ] Telegram-to-reception message on each booking request (alert row exists; write the message body)
 - [ ] SMS confirmation to guest on confirm
 

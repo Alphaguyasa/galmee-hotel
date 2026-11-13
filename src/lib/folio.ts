@@ -101,3 +101,12 @@ export function folioText(folio: Folio, tenantName: string): string {
   out.push("", folio.footer);
   return out.join("\n");
 }
+
+/**
+ * A Telegram share link carrying the folio text: reception picks the guest's
+ * chat in Telegram and sends it from their own account. No bot key involved.
+ */
+export function telegramShareUrl(text: string): string {
+  // t.me/share needs `url`; Telegram puts it first in the message, so the text goes there.
+  return `https://t.me/share/url?url=${encodeURIComponent(text)}`;
+}

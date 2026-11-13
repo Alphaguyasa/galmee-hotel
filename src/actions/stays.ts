@@ -89,7 +89,8 @@ export async function checkOutAction(_prev: ActionState, formData: FormData): Pr
   const result = await hotel.checkOutStay(parsed.data);
   if (!result.ok) return { error: result.error };
   refresh(parsed.data.stay);
-  return { done: true };
+  // Straight to the folio, ready to print or send to the guest.
+  redirect(`/stays/${parsed.data.stay}/receipt`);
 }
 
 export async function cancelStayAction(_prev: ActionState, formData: FormData): Promise<ActionState> {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildFolio, folioRef, folioText, type FolioLabels, type FolioStay } from "./folio";
+import { buildFolio, folioRef, folioText, telegramShareUrl, type FolioLabels, type FolioStay } from "./folio";
 
 const labels: FolioLabels = {
   title: "Receipt",
@@ -89,5 +89,13 @@ describe("folioText", () => {
       "",
       "Thank you",
     ]);
+  });
+});
+
+describe("telegramShareUrl", () => {
+  it("encodes the text for t.me/share", () => {
+    const url = new URL(telegramShareUrl("Balance: 630.00 ETB\nThank you"));
+    expect(url.origin + url.pathname).toBe("https://t.me/share/url");
+    expect(url.searchParams.get("url")).toBe("Balance: 630.00 ETB\nThank you");
   });
 });
