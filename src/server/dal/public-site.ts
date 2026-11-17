@@ -41,7 +41,7 @@ export const getPublicSite = cache(async (slug: string): Promise<PublicSiteDTO |
   };
 });
 
-/** `rate_limited` comes from the database guard: 3 per phone and 40 per hotel, per hour. */
+/** `rate_limited` comes from the database guard: 3 per phone and 40 per hotel per hour, 150 per hotel per day. */
 export async function submitBookingRequest(input: {
   tenantId: string;
   guestName: string;
