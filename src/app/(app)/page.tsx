@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
-import { BedDouble, ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import { BedDouble, ChevronLeft, ChevronRight, MoonStar, Plus } from "lucide-react";
 import { loadDemoDataAction, markRoomCleanAction } from "@/actions/stays";
 import { EmptyState } from "@/components/galmee/empty-state";
 import { MoneySummaryCard } from "@/components/galmee/money-summary-card";
@@ -99,6 +99,11 @@ export default async function BoardPage({ searchParams }: { searchParams: Promis
         <li>{t("legendReserved")}</li>
         <li>{t("legendCheckedOut")}</li>
       </ul>
+
+      <Link href="/night-audit" className={cn(buttonVariants({ variant: "outline" }), "bg-card justify-self-start")}>
+        <MoonStar aria-hidden />
+        {t("nightAudit")}
+      </Link>
 
       {dirtyRooms.length > 0 ? (
         <section className="grid gap-2" aria-labelledby="cleaning">

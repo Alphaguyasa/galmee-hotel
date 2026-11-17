@@ -124,3 +124,12 @@ export async function declineRequestAction(id: string): Promise<void> {
   await hotel.declineRequest(id);
   revalidatePath("/requests");
 }
+
+/** Closes the hotel day and opens the night report, ready to print. */
+export async function closeNightAction(): Promise<ActionState> {
+  await requireLogin();
+  const result = await hotel.closeNight();
+  if (!result.ok) return { error: result.error };
+  revalidatePath("/night-audit");
+  redirect(`/night-audit/${result.data}`);
+}

@@ -17,6 +17,7 @@ const KNOWN = [
   "already_loaded",
   "request_not_found",
   "rate_limited",
+  "already_closed",
 ] as const;
 
 export type HotelErrorKey = (typeof KNOWN)[number] | "room_exists" | "slug_taken" | "generic";

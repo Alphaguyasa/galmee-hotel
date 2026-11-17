@@ -18,6 +18,11 @@ Build order: M-next first, then M-after, then the remaining open items below.
 - [ ] Staff invite and role gates
 - [ ] Export all tenant data to Excel
 
+## Front desk
+
+- [x] Night audit: close the hotel day, flag no-shows, guests past check-out and guests who owe, print the night report (58 mm)
+- [x] Website booking requests capped at 150 per hotel per day
+
 Not planned for now: bar/restaurant stock. Extra charges (food, laundry) cover it.
 
 ## M0: Foundation (shared pattern for all Galmee products)

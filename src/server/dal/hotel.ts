@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { hotelErrorKey, type HotelErrorKey } from "@/lib/hotel-errors";
 import type { BoardStatus } from "@/lib/room-board";
 import { addDays } from "@/lib/room-board";
+import { parseNightReport, type NightReport } from "@/lib/night-audit";
 
 export type BoardRoomDTO = { id: string; number: string; typeName: string; inService: boolean; dirty: boolean };
 export type BoardStayDTO = {
@@ -480,4 +481,46 @@ export async function saveSiteSettings(
   );
   if (error?.code === "23505") return { ok: false, error: "slug_taken" };
   return error ? fail(error.message) : { ok: true, data: undefined };
+}
+
+export type NightAuditDTO = { id: string; closedAt: string; report: NightReport };
+
+/** What closing the hotel day now would record, for the open business date. */
+export async function nightAuditPreview(): Promise<NightReport> {
+  const supabase = await createClient();
+  const { data, error } = await supabase.rpc("ht_night_audit_preview");
+  const report = error ? null : parseNightReport(data);
+  if (!report) throw new Error("night_audit_unavailable");
+  return report;
+}
+
+/** Closes the open business date; returns the stored audit's id. */
+export async function closeNight(): Promise<MutationResult<string>> {
+  const supabase = await createClient();
+  const { data, error } = await supabase.rpc("ht_close_night");
+  if (error || !data) return fail(error?.message);
+  return { ok: true, data };
+}
+
+export async function getNightAudit(id: string): Promise<NightAuditDTO | null> {
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("ht_night_audits").select("id, closed_at, report").eq("id", id).maybeSingle();
+  if (error) throw new Error("night_audit_unavailable");
+  const report = data ? parseNightReport(data.report) : null;
+  return data && report ? { id: data.id, closedAt: data.closed_at, report } : null;
+}
+
+/** The latest closed nights, newest first. */
+export async function listNightAudits(limit = 7): Promise<NightAuditDTO[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("ht_night_audits")
+    .select("id, closed_at, report")
+    .order("business_date", { ascending: false })
+    .limit(limit);
+  if (error) throw new Error("night_audit_unavailable");
+  return (data ?? []).flatMap((a) => {
+    const report = parseNightReport(a.report);
+    return report ? [{ id: a.id, closedAt: a.closed_at, report }] : [];
+  });
 }

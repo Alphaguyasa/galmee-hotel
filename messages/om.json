@@ -83,7 +83,8 @@
     "cleaningTitle": "Kutaalee qulqullaa'uu qaban",
     "markClean": "Kutaan {room} qulqulluu dha",
     "setupRooms": "Kutaalee qindeessi",
-    "ofRooms": "kutaalee {count} keessaa"
+    "ofRooms": "kutaalee {count} keessaa",
+    "nightAudit": "Odiitii halkanii"
   },
   "stay": {
     "newTitle": "Turtii haaraa",
@@ -196,7 +197,8 @@
     "room_exists": "Lakkoofsi kutaa kun duraan jira.",
     "slug": "Teessoof qubee xixiqqoo, lakkoofsa fi sarara fayyadami.",
     "slug_taken": "Teessoon kun qabameera. Kan biraa yaali.",
-    "telegram": "Lakkoofsa chaatii Telegram lakkoofsaan qofa galchi."
+    "telegram": "Lakkoofsa chaatii Telegram lakkoofsaan qofa galchi.",
+    "already_closed": "Halkan kun duraan cufameera. Kan itti aanu walakkaa halkanii booda cufamuu danda'a."
   },
   "guests": {
     "title": "Galmee keessummootaa",
@@ -287,5 +289,34 @@
     "anyRoom": "Kutaa kamiyyuu",
     "guests": "Keessummoota",
     "message": "Ergaa (yoo jiraate)"
+  },
+  "night": {
+    "title": "Odiitii halkanii",
+    "openDate": "Guyyaa cufamu {date}",
+    "intro": "Tarree armaan gadii ilaalaa, achiis guyyaa cufaa. Guyyaan hoteelaa gara guyyaa itti aanutti ce'a, gabaasni halkanii immoo maxxansuuf ni olkaa'ama.",
+    "inHouse": "Hoteela keessa jiran",
+    "arrivals": "Kan galan",
+    "departures": "Kan ba'an",
+    "occupancy": "Qabiinsa kutaa",
+    "income": "Maallaqa fudhatame",
+    "extras": "Kaffaltii dabalataa",
+    "noShows": "Kan hin dhufne",
+    "noShowsHint": "Bakki qabameef garuu hin galle. Galchaa ykn akka hin dhufne galmeessaa.",
+    "overstays": "Guyyaan ba'umsaa darbe",
+    "overstaysHint": "Guyyaan ba'umsaa erga darbee amma iyyuu hoteela keessa jiru. Baasaa ykn turtii dheereffadhaa.",
+    "owing": "Keessummoota liqii qaban",
+    "owingHint": "Gatii kutaa hanga har'a galgalaa fi dabalataa, kaffaltiin hir'atee.",
+    "allClear": "Wanti ilaalamu hin jiru. Keessummoonni hundi bakka sirrii jiru.",
+    "flagged": "{count, plural, =1 {Dhimma 1 ilaalamu} other {Dhimmoota # ilaalaman}}",
+    "close": "Guyyaa cufi",
+    "closeWithFlags": "Ta'us guyyaa cufi",
+    "report": "Gabaasa halkanii",
+    "closedAt": "Kan cufame {time}",
+    "history": "Halkanoota cufaman",
+    "print": "Gabaasa halkanii maxxansi",
+    "back": "Gara odiitii halkaniitti deebi'i",
+    "roomGuest": "Kutaa {room} · {guest}",
+    "since": "kan eegamu {date}",
+    "due": "ba'umsa {date}"
   }
 }

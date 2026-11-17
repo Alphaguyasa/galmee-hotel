@@ -83,7 +83,8 @@
     "cleaningTitle": "Rooms to clean",
     "markClean": "Room {room} is clean",
     "setupRooms": "Set up rooms",
-    "ofRooms": "of {count} rooms"
+    "ofRooms": "of {count} rooms",
+    "nightAudit": "Night audit"
   },
   "stay": {
     "newTitle": "New stay",
@@ -196,7 +197,8 @@
     "room_exists": "A room with that number already exists.",
     "slug": "Use small letters, numbers and dashes for the web address.",
     "slug_taken": "That web address is taken. Try another.",
-    "telegram": "Enter the Telegram chat ID as digits only."
+    "telegram": "Enter the Telegram chat ID as digits only.",
+    "already_closed": "This night is already closed. The next one can be closed after midnight."
   },
   "guests": {
     "title": "Guest register",
@@ -287,5 +289,34 @@
     "anyRoom": "Any room",
     "guests": "Guests",
     "message": "Message (optional)"
+  },
+  "night": {
+    "title": "Night audit",
+    "openDate": "Closing {date}",
+    "intro": "Check the list below, then close the day. The hotel date moves to the next day and the night report is saved for printing.",
+    "inHouse": "In house",
+    "arrivals": "Checked in",
+    "departures": "Checked out",
+    "occupancy": "Occupancy",
+    "income": "Money taken",
+    "extras": "Extras posted",
+    "noShows": "Did not arrive",
+    "noShowsHint": "Reserved, but not checked in. Check them in or mark them as no-show.",
+    "overstays": "Past check-out",
+    "overstaysHint": "Still in house after their check-out date. Check them out or extend the stay.",
+    "owing": "Guests who owe",
+    "owingHint": "Room nights to tonight plus extras, less payments.",
+    "allClear": "Nothing to check. Every guest is where they should be.",
+    "flagged": "{count, plural, =1 {1 item to check} other {# items to check}}",
+    "close": "Close the day",
+    "closeWithFlags": "Close the day anyway",
+    "report": "Night report",
+    "closedAt": "Closed {time}",
+    "history": "Closed nights",
+    "print": "Print night report",
+    "back": "Back to night audit",
+    "roomGuest": "Room {room} · {guest}",
+    "since": "expected {date}",
+    "due": "due {date}"
   }
 }

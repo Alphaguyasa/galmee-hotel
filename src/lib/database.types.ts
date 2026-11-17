@@ -327,6 +327,33 @@ export type Database = {
           },
         ]
       }
+      ht_night_audits: {
+        Row: {
+          business_date: string
+          closed_at: string
+          closed_by: string | null
+          id: string
+          report: Json
+          tenant_id: string
+        }
+        Insert: {
+          business_date: string
+          closed_at?: string
+          closed_by?: string | null
+          id?: string
+          report: Json
+          tenant_id?: string
+        }
+        Update: {
+          business_date?: string
+          closed_at?: string
+          closed_by?: string | null
+          id?: string
+          report?: Json
+          tenant_id?: string
+        }
+        Relationships: []
+      }
       ht_rate_plans: {
         Row: {
           active: boolean
@@ -1392,6 +1419,8 @@ export type Database = {
       }
       ht_decline_request: { Args: { p_request: string }; Returns: undefined }
       ht_load_demo_data: { Args: never; Returns: number }
+      ht_night_audit_preview: { Args: never; Returns: Json }
+      ht_close_night: { Args: never; Returns: string }
       ht_pay_stay: {
         Args: {
           p_amount: number
