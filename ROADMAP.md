@@ -6,8 +6,8 @@ Build order: M-next first, then M-after, then the remaining open items below.
 
 - [x] Checkout receipt layout (folio: nights, charges, payments)
 - [x] Print + Telegram receipt flow
-- [ ] Telegram-to-reception message on each booking request (alert row exists; write the message body)
-- [ ] SMS confirmation to guest on confirm
+- [x] Telegram-to-reception message on each booking request (room type, Ethiopian dates, guest note, in the hotel's language)
+- [x] SMS confirmation to guest on confirm (queued in the hotel's language; delivered once the notifications sender is live)
 
 ## M-after: Tier 2 and 3
 
