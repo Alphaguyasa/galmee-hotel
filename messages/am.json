@@ -231,7 +231,9 @@
     "today": "ዛሬ",
     "thisWeek": "ይህ ሳምንት",
     "thisMonth": "ይህ ወር",
-    "period": "ከ{from} እስከ {to}"
+    "period": "ከ{from} እስከ {to}",
+    "previousMonth": "ያለፈው ወር፦ {month}",
+    "nextMonth": "የሚቀጥለው ወር፦ {month}"
   },
   "settings": {
     "title": "ማዋቀር",

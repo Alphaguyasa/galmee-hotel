@@ -13,7 +13,7 @@ Build order: M-next first, then M-after, then the remaining open items below.
 
 - [ ] Offline queue for stay payments and check-in
 - [ ] Rate plan management screen (seasonal prices)
-- [ ] Monthly occupancy and revenue report, CSV
+- [x] Monthly occupancy and revenue report, CSV (any past Ethiopian month, CSV carries Ethiopian dates)
 - [ ] Company/credit statements on the shared credit ledger
 - [ ] Staff invite and role gates
 - [ ] Export all tenant data to Excel

@@ -231,7 +231,9 @@
     "today": "Today",
     "thisWeek": "This week",
     "thisMonth": "This month",
-    "period": "{from} to {to}"
+    "period": "{from} to {to}",
+    "previousMonth": "Previous month: {month}",
+    "nextMonth": "Next month: {month}"
   },
   "settings": {
     "title": "Setup",

@@ -231,7 +231,9 @@
     "today": "Har'a",
     "thisWeek": "Torban kana",
     "thisMonth": "Ji'a kana",
-    "period": "{from} hanga {to}"
+    "period": "{from} hanga {to}",
+    "previousMonth": "Ji'a darbe: {month}",
+    "nextMonth": "Ji'a itti aanu: {month}"
   },
   "settings": {
     "title": "Qindeessi",
