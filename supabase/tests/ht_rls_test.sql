@@ -49,6 +49,9 @@ begin
   r := r || 'staff direct charge insert=' || ok || ' (expect false); ';
   begin update public.ht_stays set nightly_rate=1 where id=sa; get diagnostics n = row_count; exception when others then n := -1; end; r := r || 'staff direct stay update rows=' || n || ' (expect 0 or -1 denied); ';
   begin update public.ht_rooms set in_service=false; get diagnostics n = row_count; exception when others then n := -1; end; r := r || 'staff room update rows=' || n || ' (expect 0 or -1); ';
+  select count(*) into n from public.bookings where resource_id=ra; r := r || 'stays booked room=' || n || ' (expect 2); ';
+  begin insert into public.bookings(resource_type,resource_id,starts_at,ends_at) values ('room',ra2,now()+interval '30 days',now()+interval '31 days'); ok := true; exception when others then ok := false; end;
+  r := r || 'staff direct booking=' || ok || ' (expect false); ';
 
   -- tenant A owner vs tenant B data
   perform set_config('request.jwt.claims', json_build_object('sub', ua, 'role','authenticated')::text, true);
@@ -69,6 +72,8 @@ begin
   r := r || 'A book B room=' || ok || ' err=' || err || ' (expect false); ';
   begin perform * from public.ht_stay_totals(sb); ok := true; exception when others then ok := false; end;
   r := r || 'A totals B stay=' || ok || ' (expect false); ';
+  begin insert into public.bookings(resource_type,resource_id,starts_at,ends_at) values ('room',ra2,now()+interval '30 days',now()+interval '31 days'); ok := true; exception when others then ok := false; end;
+  r := r || 'owner direct booking=' || ok || ' (expect false); ';
 
   -- anon
   perform set_config('role','anon', true);
