@@ -3,20 +3,25 @@ import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/config";
 import { formatEthiopianDate } from "@/lib/ethiopian-date";
+import { maskIdNumber } from "@/lib/guest-register";
 import { formatBirr } from "@/lib/money";
 import { getGuest } from "@/server/dal/hotel";
+import { getSession } from "@/server/dal/session";
 import { uuidParam } from "@/server/validation";
 
 export default async function GuestPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   if (!uuidParam.safeParse(id).success) notFound();
-  const [guest, t, tStay, locale] = await Promise.all([
+  const [guest, { profile }, t, tStay, locale] = await Promise.all([
     getGuest(id),
+    getSession(),
     getTranslations("guests"),
     getTranslations("stay"),
     getLocale() as Promise<Locale>,
   ]);
   if (!guest) notFound();
+  // Reception sees ID numbers in full only on the stay's check-in and the printed register.
+  const showId = (n: string) => (profile.role === "staff" ? maskIdNumber(n) : n);
   return (
     <div className="grid max-w-xl gap-4">
       <header className="grid gap-1">
@@ -44,7 +49,7 @@ export default async function GuestPage({ params }: { params: Promise<{ id: stri
                 </span>
                 {s.idNumber ? (
                   <span className="num text-sm text-muted-foreground">
-                    {tStay(`idTypes.${s.idType ?? "other"}`)}: {s.idNumber}
+                    {tStay(`idTypes.${s.idType ?? "other"}`)}: {showId(s.idNumber)}
                   </span>
                 ) : null}
               </Link>

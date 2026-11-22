@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { recentDistinct } from "./guest-register";
+import { maskIdNumber, recentDistinct } from "./guest-register";
 
 describe("recentDistinct", () => {
   it("keeps the most recent spelling once, skips blanks, per field", () => {
@@ -18,5 +18,14 @@ describe("recentDistinct", () => {
   it("stops at the limit", () => {
     const rows = ["A", "B", "C", "D"].map((v) => ({ coming_from: v, going_to: null, purpose: null }));
     expect(recentDistinct(rows, 2).comingFrom).toEqual(["A", "B"]);
+  });
+});
+
+describe("maskIdNumber", () => {
+  it("keeps only the last 3 characters", () => {
+    expect(maskIdNumber(" SH-12345 ")).toBe("••••345");
+  });
+  it("hides very short numbers completely", () => {
+    expect(maskIdNumber("K1")).toBe("••••");
   });
 });

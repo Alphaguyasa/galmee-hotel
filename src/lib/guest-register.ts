@@ -21,3 +21,10 @@ export function recentDistinct(
   };
   return { comingFrom: pick("coming_from"), goingTo: pick("going_to"), purpose: pick("purpose") };
 }
+
+/** ID number as reception sees it in guest history: bullets and the last 3 characters. */
+export function maskIdNumber(value: string): string {
+  const v = value.trim();
+  if (v.length <= 3) return "•".repeat(4);
+  return `••••${v.slice(-3)}`;
+}
