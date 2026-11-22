@@ -84,7 +84,8 @@
     "markClean": "Kutaan {room} qulqulluu dha",
     "setupRooms": "Kutaalee qindeessi",
     "ofRooms": "kutaalee {count} keessaa",
-    "nightAudit": "Odiitii halkanii"
+    "nightAudit": "Odiitii halkanii",
+    "policeRegister": "Galmee poolisii"
   },
   "stay": {
     "newTitle": "Turtii haaraa",
@@ -327,5 +328,28 @@
     "roomGuest": "Kutaa {room} · {guest}",
     "since": "kan eegamu {date}",
     "due": "ba'umsa {date}"
+  },
+  "register": {
+    "title": "Galmee keessummootaa poolisiif",
+    "hint": "Namoota halkan bulan hunda, akkuma galmee waraqaa. Halkan halkaniin maxxansi; halkan darbe irra deebi'anii maxxansuun ni danda'ama.",
+    "night": "Halkan",
+    "show": "Agarsiisi",
+    "previous": "Halkan darbe",
+    "next": "Halkan itti aanu",
+    "print": "Galmee maxxansi",
+    "printTitle": "Galmee keessummootaa",
+    "nightOf": "Halkan",
+    "room": "Kutaa",
+    "guest": "Maqaa keessummaa",
+    "nationality": "Lammummaa",
+    "idDocument": "Gosaa fi lakkoofsa eenyummaa",
+    "comingFrom": "Eessaa",
+    "goingTo": "Eessatti",
+    "purpose": "Kaayyoo",
+    "checkedIn": "Kan seene",
+    "departure": "Kan ba'u",
+    "empty": "Halkan kana keessummaan bule hin jiru.",
+    "total": "{count, plural, =1 {keessummaa 1} other {keessummoota #}}",
+    "signature": "Mallattoo simataa"
   }
 }

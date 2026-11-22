@@ -168,3 +168,26 @@
 .board-stripes {
   background-image: repeating-linear-gradient(135deg, var(--rule) 0 6px, var(--muted) 6px 12px);
 }
+
+/* Police guest register: A4 landscape, prints alone, page numbers in the margin. */
+@page register {
+  size: A4 landscape;
+  margin: 12mm 10mm 14mm;
+  @bottom-right {
+    content: counter(page) " / " counter(pages);
+    font-size: 9pt;
+  }
+}
+@media print {
+  body:has(.register-a4) > *:not(:has(.register-a4)) {
+    display: none !important;
+  }
+  .register-a4 {
+    page: register;
+    color: #000;
+    background: #fff;
+  }
+  .register-a4 thead {
+    display: table-header-group;
+  }
+}

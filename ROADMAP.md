@@ -22,6 +22,9 @@ Build order: M-next first, then M-after, then the remaining open items below.
 
 - [x] Night audit: close the hotel day, flag no-shows, guests past check-out and guests who owe, print the night report (58 mm)
 - [x] Website booking requests capped at 150 per hotel per day
+- [x] Guest register for the police: check-in asks coming from, going to and purpose (with recent answers); any night's register prints on A4 landscape, each print logged
+- [ ] ID photo at check-in (private, owner/manager view only, logged)
+- [ ] Masked ID numbers in the guest book for reception; ID photos deleted a year after checkout
 
 Not planned for now: bar/restaurant stock. Extra charges (food, laundry) cover it.
 

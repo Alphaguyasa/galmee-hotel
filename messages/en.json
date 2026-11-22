@@ -84,7 +84,8 @@
     "markClean": "Room {room} is clean",
     "setupRooms": "Set up rooms",
     "ofRooms": "of {count} rooms",
-    "nightAudit": "Night audit"
+    "nightAudit": "Night audit",
+    "policeRegister": "Police register"
   },
   "stay": {
     "newTitle": "New stay",
@@ -327,5 +328,28 @@
     "roomGuest": "Room {room} · {guest}",
     "since": "expected {date}",
     "due": "due {date}"
+  },
+  "register": {
+    "title": "Police guest register",
+    "hint": "Everyone who stayed the night, in the order of the paper ledger. Print it each night; any past night can be printed again.",
+    "night": "Night",
+    "show": "Show",
+    "previous": "Previous night",
+    "next": "Next night",
+    "print": "Print register",
+    "printTitle": "Guest register",
+    "nightOf": "Night of",
+    "room": "Room",
+    "guest": "Guest name",
+    "nationality": "Nationality",
+    "idDocument": "ID type and number",
+    "comingFrom": "Coming from",
+    "goingTo": "Going to",
+    "purpose": "Purpose",
+    "checkedIn": "Checked in",
+    "departure": "Expected departure",
+    "empty": "No guests stayed this night.",
+    "total": "{count, plural, =1 {1 guest} other {# guests}}",
+    "signature": "Signature of the receptionist"
   }
 }

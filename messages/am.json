@@ -84,7 +84,8 @@
     "markClean": "ክፍል {room} ጸድቷል",
     "setupRooms": "ክፍሎችን አዋቅር",
     "ofRooms": "ከ{count} ክፍሎች",
-    "nightAudit": "የምሽት ኦዲት"
+    "nightAudit": "የምሽት ኦዲት",
+    "policeRegister": "የፖሊስ መዝገብ"
   },
   "stay": {
     "newTitle": "አዲስ ቆይታ",
@@ -327,5 +328,28 @@
     "roomGuest": "ክፍል {room} · {guest}",
     "since": "የሚጠበቀው {date}",
     "due": "መውጫ {date}"
+  },
+  "register": {
+    "title": "የፖሊስ የእንግዳ መዝገብ",
+    "hint": "ሌሊቱን ያደሩ እንግዶች በሙሉ፣ በወረቀት መዝገቡ ቅደም ተከተል። በየሌሊቱ ያትሙት፤ ያለፈ ሌሊትም እንደገና ሊታተም ይችላል።",
+    "night": "ሌሊት",
+    "show": "አሳይ",
+    "previous": "ያለፈው ሌሊት",
+    "next": "ቀጣዩ ሌሊት",
+    "print": "መዝገቡን አትም",
+    "printTitle": "የእንግዳ መዝገብ",
+    "nightOf": "የሌሊቱ ቀን",
+    "room": "ክፍል",
+    "guest": "የእንግዳ ስም",
+    "nationality": "ዜግነት",
+    "idDocument": "የመታወቂያ ዓይነትና ቁጥር",
+    "comingFrom": "ከየት",
+    "goingTo": "ወዴት",
+    "purpose": "ዓላማ",
+    "checkedIn": "የገቡበት",
+    "departure": "የሚወጡበት",
+    "empty": "በዚህ ሌሊት ያደረ እንግዳ የለም።",
+    "total": "{count, plural, =1 {1 እንግዳ} other {# እንግዶች}}",
+    "signature": "የእንግዳ ተቀባዩ ፊርማ"
   }
 }

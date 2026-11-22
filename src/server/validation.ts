@@ -58,6 +58,9 @@ export const newStaySchema = z
   })
   .refine((v) => v.checkOut > v.checkIn, { path: ["checkOut"] });
 
+/** A night for the police register: a real calendar day. */
+export const registerDaySchema = day.refine((v) => !Number.isNaN(Date.parse(`${v}T00:00:00Z`)));
+
 export const checkInSchema = z.object({
   stay: uuid,
   idType: z.enum(["kebele", "national", "passport", "driving", "other"]),

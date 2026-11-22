@@ -552,3 +552,43 @@ export async function listNightAudits(limit = 7): Promise<NightAuditDTO[]> {
     return report ? [{ id: a.id, closedAt: a.closed_at, report }] : [];
   });
 }
+
+export type RegisterRowDTO = {
+  stayId: string;
+  room: string;
+  guest: string;
+  nationality: string | null;
+  idType: string | null;
+  idNumber: string | null;
+  comingFrom: string | null;
+  goingTo: string | null;
+  purpose: string | null;
+  checkedInAt: string;
+  expectedDeparture: string;
+};
+
+/** Guests in the hotel on the night of `day` (Addis date), in ledger order. */
+export const getRegisterRows = cache(async (day: string): Promise<RegisterRowDTO[]> => {
+  const supabase = await createClient();
+  const { data, error } = await supabase.rpc("ht_register_rows", { p_date: day });
+  if (error) throw new Error("register_unavailable");
+  return (data ?? []).map((r) => ({
+    stayId: r.stay_id,
+    room: r.room_number,
+    guest: r.guest_name,
+    nationality: r.nationality,
+    idType: r.id_type,
+    idNumber: r.id_number,
+    comingFrom: r.coming_from,
+    goingTo: r.going_to,
+    purpose: r.purpose,
+    checkedInAt: r.checked_in_at,
+    expectedDeparture: r.expected_departure,
+  }));
+});
+
+export async function logRegisterPrint(day: string): Promise<MutationResult> {
+  const supabase = await createClient();
+  const { error } = await supabase.rpc("ht_log_register_print", { p_date: day });
+  return error ? fail(error.message) : { ok: true, data: undefined };
+}
