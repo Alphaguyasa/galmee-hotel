@@ -1385,6 +1385,24 @@ export type Database = {
         }
         Returns: undefined
       }
+      ht_log_register_print: { Args: { p_date: string }; Returns: string }
+      ht_register_rows: {
+        Args: { p_date: string }
+        Returns: {
+          checked_in_at: string
+          checked_out_at: string | null
+          coming_from: string | null
+          expected_departure: string
+          going_to: string | null
+          guest_name: string
+          id_number: string | null
+          id_type: string | null
+          nationality: string | null
+          purpose: string | null
+          room_number: string
+          stay_id: string
+        }[]
+      }
       ht_set_guest_id: {
         Args: {
           p_check_in?: boolean
