@@ -21,7 +21,7 @@ import { formatEthiopianDate } from "@/lib/ethiopian-date";
 import { formatBirr } from "@/lib/money";
 import { addisToday } from "@/lib/room-board";
 import { cn } from "@/lib/utils";
-import { getStay } from "@/server/dal/hotel";
+import { getRegisterSuggestions, getStay } from "@/server/dal/hotel";
 import { getSession } from "@/server/dal/session";
 import { uuidParam } from "@/server/validation";
 
@@ -45,6 +45,8 @@ export default async function StayPage({ params }: { params: Promise<{ id: strin
   const canManage = profile.role !== "staff";
   const { totals } = stay;
   const methods = METHODS.map((m) => ({ value: m, label: t(`methods.${m}`) }));
+  const canCheckIn = stay.status === "reserved" && stay.checkIn <= today;
+  const suggestions = canCheckIn ? await getRegisterSuggestions() : null;
 
   return (
     <div className="grid max-w-xl gap-4">
@@ -87,7 +89,7 @@ export default async function StayPage({ params }: { params: Promise<{ id: strin
         </Link>
       ) : null}
 
-      {stay.status === "reserved" && stay.checkIn <= today ? (
+      {canCheckIn && suggestions ? (
         <section className="grid gap-2" aria-labelledby="checkin">
           <h2 id="checkin" className="text-lg font-semibold">{t("checkInTitle")}</h2>
           <ActionForm action={checkInAction} submitLabel={t("checkInAction")}>
@@ -99,8 +101,15 @@ export default async function StayPage({ params }: { params: Promise<{ id: strin
             </div>
             <div className="grid gap-2">
               <Label htmlFor="nationality">{t("nationality")}</Label>
-              <Input id="nationality" name="nationality" autoComplete="off" maxLength={60} />
+              <Input id="nationality" name="nationality" autoComplete="off" maxLength={60} defaultValue={stay.nationality ?? t("nationalityDefault")} />
             </div>
+            <fieldset className="grid gap-3 rounded-lg border border-border p-3">
+              <legend className="px-1 text-sm font-medium">{t("registerTitle")}</legend>
+              <p className="text-sm text-muted-foreground">{t("registerHint")}</p>
+              <SuggestInput name="comingFrom" label={t("comingFrom")} options={suggestions.comingFrom} />
+              <SuggestInput name="goingTo" label={t("goingTo")} options={suggestions.goingTo} />
+              <SuggestInput name="purpose" label={t("purpose")} options={suggestions.purpose} />
+            </fieldset>
           </ActionForm>
         </section>
       ) : null}
@@ -202,6 +211,24 @@ export default async function StayPage({ params }: { params: Promise<{ id: strin
             </label>
           </ActionForm>
         </section>
+      ) : null}
+    </div>
+  );
+}
+
+/** Plain text input with the hotel's recent values offered as browser suggestions. */
+function SuggestInput({ name, label, options }: { name: string; label: string; options: string[] }) {
+  const listId = `${name}-recent`;
+  return (
+    <div className="grid gap-2">
+      <Label htmlFor={name}>{label}</Label>
+      <Input id={name} name={name} autoComplete="off" maxLength={80} list={options.length ? listId : undefined} />
+      {options.length ? (
+        <datalist id={listId}>
+          {options.map((o) => (
+            <option key={o} value={o} />
+          ))}
+        </datalist>
       ) : null}
     </div>
   );

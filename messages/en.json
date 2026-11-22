@@ -169,7 +169,13 @@
     "paidOn": "Paid {date}",
     "thanks": "Thank you for staying with us",
     "sendTelegram": "Send on Telegram",
-    "receiptHint": "Print it for the guest or send it on Telegram."
+    "receiptHint": "Print it for the guest or send it on Telegram.",
+    "registerTitle": "Guest register",
+    "registerHint": "For the police register. Pick a recent value or type it.",
+    "comingFrom": "Coming from (optional)",
+    "goingTo": "Going to (optional)",
+    "purpose": "Purpose of visit (optional)",
+    "nationalityDefault": "Ethiopian"
   },
   "errors": {
     "generic": "Something went wrong. Please try again.",
@@ -198,7 +204,10 @@
     "slug": "Use small letters, numbers and dashes for the web address.",
     "slug_taken": "That web address is taken. Try another.",
     "telegram": "Enter the Telegram chat ID as digits only.",
-    "already_closed": "This night is already closed. The next one can be closed after midnight."
+    "already_closed": "This night is already closed. The next one can be closed after midnight.",
+    "id_number_required": "Enter the ID number for this ID type.",
+    "too_long": "One of the fields is too long.",
+    "too_late": "This stay was checked out more than a day ago. Its register details can no longer change."
   },
   "guests": {
     "title": "Guest register",

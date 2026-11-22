@@ -44,7 +44,7 @@ export async function createStayAction(_prev: ActionState, formData: FormData): 
 
 export async function checkInAction(_prev: ActionState, formData: FormData): Promise<ActionState> {
   await requireLogin();
-  const parsed = checkInSchema.safeParse(formToObject(formData, ["stay", "idType", "idNumber", "nationality"]));
+  const parsed = checkInSchema.safeParse(formToObject(formData, ["stay", "idType", "idNumber", "nationality", "comingFrom", "goingTo", "purpose"]));
   if (!parsed.success) return { error: "form" };
   const result = await hotel.checkInStay(parsed.data);
   if (!result.ok) return { error: result.error };

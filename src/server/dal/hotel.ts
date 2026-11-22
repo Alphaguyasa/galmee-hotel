@@ -5,6 +5,7 @@ import { hotelErrorKey, type HotelErrorKey } from "@/lib/hotel-errors";
 import type { BoardStatus } from "@/lib/room-board";
 import { addDays } from "@/lib/room-board";
 import { parseNightReport, type NightReport } from "@/lib/night-audit";
+import { recentDistinct, type RegisterSuggestionsDTO } from "@/lib/guest-register";
 
 export type BoardRoomDTO = { id: string; number: string; typeName: string; inService: boolean; dirty: boolean };
 export type BoardStayDTO = {
@@ -189,16 +190,43 @@ export async function createStay(input: {
   return { ok: true, data };
 }
 
-export async function checkInStay(input: { stay: string; idType: string; idNumber: string; nationality?: string }): Promise<MutationResult> {
+export async function checkInStay(input: {
+  stay: string;
+  idType: string;
+  idNumber: string;
+  nationality?: string;
+  comingFrom?: string;
+  goingTo?: string;
+  purpose?: string;
+}): Promise<MutationResult> {
   const supabase = await createClient();
-  const { error } = await supabase.rpc("ht_check_in", {
+  // One call saves the guest register details and checks the stay in.
+  const { error } = await supabase.rpc("ht_set_guest_id", {
     p_stay: input.stay,
     p_id_type: input.idType,
     p_id_number: input.idNumber,
     p_nationality: input.nationality,
+    p_coming_from: input.comingFrom,
+    p_going_to: input.goingTo,
+    p_purpose: input.purpose,
+    p_check_in: true,
   });
   return error ? fail(error.message) : { ok: true, data: undefined };
 }
+
+/** Recent values typed at check-in, so the desk can pick a town or purpose instead of typing it. */
+export const getRegisterSuggestions = cache(async (): Promise<RegisterSuggestionsDTO> => {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("ht_stays")
+    .select("coming_from, going_to, purpose")
+    .not("checked_in_at", "is", null)
+    .order("checked_in_at", { ascending: false })
+    .limit(80);
+  if (error) return { comingFrom: [], goingTo: [], purpose: [] };
+  return recentDistinct(data ?? []);
+});
+
 
 export async function addCharge(input: { stay: string; kind: string; description?: string; amount: number; clientRef: string }): Promise<MutationResult> {
   const supabase = await createClient();

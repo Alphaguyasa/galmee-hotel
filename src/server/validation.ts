@@ -63,6 +63,9 @@ export const checkInSchema = z.object({
   idType: z.enum(["kebele", "national", "passport", "driving", "other"]),
   idNumber: z.string().trim().min(2).max(40),
   nationality: optionalText(60),
+  comingFrom: optionalText(80),
+  goingTo: optionalText(80),
+  purpose: optionalText(80),
 });
 
 export const chargeSchema = z.object({

@@ -670,6 +670,10 @@ export type Database = {
           final_room_total: number | null
           id: string
           id_number: string | null
+          coming_from: string | null
+          going_to: string | null
+          purpose: string | null
+          id_photo_path: string | null
           id_type: string | null
           nationality: string | null
           nightly_rate: number
@@ -698,6 +702,10 @@ export type Database = {
           final_room_total?: number | null
           id?: string
           id_number?: string | null
+          coming_from?: string | null
+          going_to?: string | null
+          purpose?: string | null
+          id_photo_path?: string | null
           id_type?: string | null
           nationality?: string | null
           nightly_rate: number
@@ -726,6 +734,10 @@ export type Database = {
           final_room_total?: number | null
           id?: string
           id_number?: string | null
+          coming_from?: string | null
+          going_to?: string | null
+          purpose?: string | null
+          id_photo_path?: string | null
           id_type?: string | null
           nationality?: string | null
           nightly_rate?: number
@@ -1369,6 +1381,20 @@ export type Database = {
           p_id_number?: string
           p_id_type?: string
           p_nationality?: string
+          p_stay: string
+        }
+        Returns: undefined
+      }
+      ht_set_guest_id: {
+        Args: {
+          p_check_in?: boolean
+          p_coming_from?: string
+          p_going_to?: string
+          p_id_number?: string
+          p_id_type?: string
+          p_nationality?: string
+          p_photo_path?: string
+          p_purpose?: string
           p_stay: string
         }
         Returns: undefined

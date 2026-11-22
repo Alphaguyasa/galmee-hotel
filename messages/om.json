@@ -169,7 +169,13 @@
     "paidOn": "Kaffalame {date}",
     "thanks": "Nu filattaniif galatoomaa",
     "sendTelegram": "Telegiraamiin ergi",
-    "receiptHint": "Keessummaaf maxxansaa ykn Telegiraamiin ergaa."
+    "receiptHint": "Keessummaaf maxxansaa ykn Telegiraamiin ergaa.",
+    "registerTitle": "Galmee keessummootaa",
+    "registerHint": "Galmee poolisiif. Gatii dhiyoo filadhu ykn barreessi.",
+    "comingFrom": "Eessaa dhufe (yoo jiraate)",
+    "goingTo": "Eessa deema (yoo jiraate)",
+    "purpose": "Kaayyoo imalaa (yoo jiraate)",
+    "nationalityDefault": "Itoophiyaa"
   },
   "errors": {
     "generic": "Rakkoon uumameera. Maaloo irra deebi'ii yaali.",
@@ -198,7 +204,10 @@
     "slug": "Teessoof qubee xixiqqoo, lakkoofsa fi sarara fayyadami.",
     "slug_taken": "Teessoon kun qabameera. Kan biraa yaali.",
     "telegram": "Lakkoofsa chaatii Telegram lakkoofsaan qofa galchi.",
-    "already_closed": "Halkan kun duraan cufameera. Kan itti aanu walakkaa halkanii booda cufamuu danda'a."
+    "already_closed": "Halkan kun duraan cufameera. Kan itti aanu walakkaa halkanii booda cufamuu danda'a.",
+    "id_number_required": "Gosa eenyummaa kanaaf lakkoofsa galchi.",
+    "too_long": "Dirree tokko baay'ee dheeraa dha.",
+    "too_late": "Turtiin kun guyyaa tokkoo ol dura xumurameera. Odeeffannoon galmee isaa hin jijjiiramu."
   },
   "guests": {
     "title": "Galmee keessummootaa",
