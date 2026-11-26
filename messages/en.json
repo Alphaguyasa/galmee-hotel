@@ -176,7 +176,16 @@
     "comingFrom": "Coming from (optional)",
     "goingTo": "Going to (optional)",
     "purpose": "Purpose of visit (optional)",
-    "nationalityDefault": "Ethiopian"
+    "nationalityDefault": "Ethiopian",
+    "photo": "ID photo (optional)",
+    "photoHint": "Take a photo of the ID card. Only the owner and managers can open it later.",
+    "photoTake": "Take ID photo",
+    "photoSaving": "Saving photo…",
+    "photoTaken": "ID photo taken",
+    "photoRetake": "Retake",
+    "photoRemove": "Remove",
+    "photoTooBig": "The photo could not be made small enough. Try again closer to the card.",
+    "photoFailed": "The photo was not saved. Check the connection and try again, or check in without it."
   },
   "errors": {
     "generic": "Something went wrong. Please try again.",
@@ -208,7 +217,8 @@
     "already_closed": "This night is already closed. The next one can be closed after midnight.",
     "id_number_required": "Enter the ID number for this ID type.",
     "too_long": "One of the fields is too long.",
-    "too_late": "This stay was checked out more than a day ago. Its register details can no longer change."
+    "too_late": "This stay was checked out more than a day ago. Its register details can no longer change.",
+    "invalid_photo_path": "The ID photo does not belong to this stay. Take it again."
   },
   "guests": {
     "title": "Guest register",

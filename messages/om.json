@@ -176,7 +176,16 @@
     "comingFrom": "Eessaa dhufe (yoo jiraate)",
     "goingTo": "Eessa deema (yoo jiraate)",
     "purpose": "Kaayyoo imalaa (yoo jiraate)",
-    "nationalityDefault": "Itoophiyaa"
+    "nationalityDefault": "Itoophiyaa",
+    "photo": "Suuraa eenyummaa (filannoo)",
+    "photoHint": "Suuraa kaardii eenyummaa kaasi. Booda kan banuu danda'an abbaa qabeenyaa fi hoggantoota qofa.",
+    "photoTake": "Suuraa eenyummaa kaasi",
+    "photoSaving": "Suuraan olkaa'amaa jira…",
+    "photoTaken": "Suuraa eenyummaa kaafame",
+    "photoRetake": "Irra deebi'ii kaasi",
+    "photoRemove": "Haqi",
+    "photoTooBig": "Suuraan gahaatti xiqqeessuu hin dandeenye. Kaardiitti dhihaadhuu irra deebi'ii yaali.",
+    "photoFailed": "Suuraan hin olkaa'amne. Walqunnamtii mirkaneessiitii irra deebi'ii yaali, yookaan suuraa malee galchi."
   },
   "errors": {
     "generic": "Rakkoon uumameera. Maaloo irra deebi'ii yaali.",
@@ -208,7 +217,8 @@
     "already_closed": "Halkan kun duraan cufameera. Kan itti aanu walakkaa halkanii booda cufamuu danda'a.",
     "id_number_required": "Gosa eenyummaa kanaaf lakkoofsa galchi.",
     "too_long": "Dirree tokko baay'ee dheeraa dha.",
-    "too_late": "Turtiin kun guyyaa tokkoo ol dura xumurameera. Odeeffannoon galmee isaa hin jijjiiramu."
+    "too_late": "Turtiin kun guyyaa tokkoo ol dura xumurameera. Odeeffannoon galmee isaa hin jijjiiramu.",
+    "invalid_photo_path": "Suuraan eenyummaa kan turtii kanaa miti. Irra deebi'ii kaasi."
   },
   "guests": {
     "title": "Galmee keessummootaa",

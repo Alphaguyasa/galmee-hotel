@@ -198,6 +198,7 @@ export async function checkInStay(input: {
   comingFrom?: string;
   goingTo?: string;
   purpose?: string;
+  photoPath?: string;
 }): Promise<MutationResult> {
   const supabase = await createClient();
   // One call saves the guest register details and checks the stay in.
@@ -209,6 +210,7 @@ export async function checkInStay(input: {
     p_coming_from: input.comingFrom,
     p_going_to: input.goingTo,
     p_purpose: input.purpose,
+    p_photo_path: input.photoPath,
     p_check_in: true,
   });
   return error ? fail(error.message) : { ok: true, data: undefined };

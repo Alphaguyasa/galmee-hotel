@@ -21,6 +21,7 @@ const KNOWN = [
   "id_number_required",
   "too_long",
   "too_late",
+  "invalid_photo_path",
 ] as const;
 
 export type HotelErrorKey = (typeof KNOWN)[number] | "room_exists" | "slug_taken" | "generic";

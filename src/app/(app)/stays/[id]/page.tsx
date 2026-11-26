@@ -12,6 +12,7 @@ import {
 } from "@/actions/stays";
 import { ActionForm } from "@/components/hotel/action-form";
 import { SelectField } from "@/components/hotel/fields";
+import { IdPhotoField } from "@/components/hotel/id-photo-field";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -32,7 +33,7 @@ const KINDS = ["food", "drink", "laundry", "other"] as const;
 export default async function StayPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   if (!uuidParam.safeParse(id).success) notFound();
-  const [stay, { profile }, t, locale] = await Promise.all([
+  const [stay, { profile, tenant }, t, locale] = await Promise.all([
     getStay(id),
     getSession(),
     getTranslations("stay"),
@@ -110,6 +111,7 @@ export default async function StayPage({ params }: { params: Promise<{ id: strin
               <SuggestInput name="goingTo" label={t("goingTo")} options={suggestions.goingTo} />
               <SuggestInput name="purpose" label={t("purpose")} options={suggestions.purpose} />
             </fieldset>
+            <IdPhotoField tenant={tenant.id} stay={stay.id} />
           </ActionForm>
         </section>
       ) : null}

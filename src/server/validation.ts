@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { isIdPhotoPathFor } from "@/lib/id-photo";
 
 export const MIN_PASSWORD = 10;
 
@@ -69,7 +70,13 @@ export const checkInSchema = z.object({
   comingFrom: optionalText(80),
   goingTo: optionalText(80),
   purpose: optionalText(80),
-});
+  photoPath: z
+    .string()
+    .trim()
+    .max(200)
+    .optional()
+    .transform((v) => (v ? v : undefined)),
+}).refine((v) => v.photoPath === undefined || isIdPhotoPathFor(v.photoPath, v.stay), { path: ["photoPath"] });
 
 export const chargeSchema = z.object({
   stay: uuid,
