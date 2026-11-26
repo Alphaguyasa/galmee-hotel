@@ -324,6 +324,7 @@
     "closedAt": "የተዘጋው {time}",
     "history": "የተዘጉ ምሽቶች",
     "print": "የምሽት ሪፖርት አትም",
+    "register": "የዚህ ምሽት የፖሊስ መዝገብ",
     "back": "ወደ የምሽት ኦዲት ተመለስ",
     "roomGuest": "ክፍል {room} · {guest}",
     "since": "የሚጠበቀው {date}",

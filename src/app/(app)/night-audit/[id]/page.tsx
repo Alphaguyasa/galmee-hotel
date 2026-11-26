@@ -63,6 +63,13 @@ export default async function NightReportPage({ params }: { params: Promise<{ id
       />
       <div className="flex flex-wrap gap-2 print:hidden">
         <PrintButton label={t("print")} />
+        <Link
+          href={`/register?date=${r.businessDate}`}
+          prefetch={false}
+          className={cn(buttonVariants({ variant: "outline", size: "lg" }), "bg-card")}
+        >
+          {t("register")}
+        </Link>
         <Link href="/night-audit" className={cn(buttonVariants({ variant: "outline", size: "lg" }), "bg-card")}>
           {t("back")}
         </Link>

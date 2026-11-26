@@ -324,6 +324,7 @@
     "closedAt": "Closed {time}",
     "history": "Closed nights",
     "print": "Print night report",
+    "register": "Police register for this night",
     "back": "Back to night audit",
     "roomGuest": "Room {room} · {guest}",
     "since": "expected {date}",
