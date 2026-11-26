@@ -5,12 +5,10 @@ import { redirect } from "next/navigation";
 import * as hotel from "@/server/dal/hotel";
 import { getUserId } from "@/server/dal/session";
 import {
-  chargeSchema,
   checkInSchema,
   checkOutSchema,
   formToObject,
   newStaySchema,
-  paymentSchema,
   uuidParam,
 } from "@/server/validation";
 
@@ -52,31 +50,11 @@ export async function checkInAction(_prev: ActionState, formData: FormData): Pro
   return { done: true };
 }
 
-export async function addChargeAction(_prev: ActionState, formData: FormData): Promise<ActionState> {
-  await requireLogin();
-  const parsed = chargeSchema.safeParse(formToObject(formData, ["stay", "kind", "description", "amount", "clientRef"]));
-  if (!parsed.success) return { error: "form" };
-  const result = await hotel.addCharge(parsed.data);
-  if (!result.ok) return { error: result.error };
-  refresh(parsed.data.stay);
-  return { done: true };
-}
-
 export async function reverseChargeAction(stay: string, charge: string): Promise<void> {
   await requireLogin();
   if (!uuidParam.safeParse(stay).success || !uuidParam.safeParse(charge).success) return;
   await hotel.reverseCharge(charge);
   refresh(stay);
-}
-
-export async function payStayAction(_prev: ActionState, formData: FormData): Promise<ActionState> {
-  await requireLogin();
-  const parsed = paymentSchema.safeParse(formToObject(formData, ["stay", "amount", "method", "reference", "clientRef"]));
-  if (!parsed.success) return { error: "form" };
-  const result = await hotel.payStay(parsed.data);
-  if (!result.ok) return { error: result.error };
-  refresh(parsed.data.stay);
-  return { done: true };
 }
 
 export async function checkOutAction(_prev: ActionState, formData: FormData): Promise<ActionState> {

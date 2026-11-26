@@ -362,5 +362,11 @@
     "empty": "No guests stayed this night.",
     "total": "{count, plural, =1 {1 guest} other {# guests}}",
     "signature": "Signature of the receptionist"
+  },
+  "sync": {
+    "queued": "Saved on this phone. It will be sent when the network is back.",
+    "queuedPayment": "Payment · {amount}",
+    "queuedCharge": "Extra charge · {amount}",
+    "queueRefused": "The server refused this entry."
   }
 }

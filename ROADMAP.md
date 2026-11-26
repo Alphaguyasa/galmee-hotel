@@ -11,7 +11,8 @@ Build order: M-next first, then M-after, then the remaining open items below.
 
 ## M-after: Tier 2 and 3
 
-- [ ] Offline queue for stay payments and check-in
+- [x] Offline queue for stay payments and extra charges (wait on the phone, sync chip, sent once when back online)
+- [ ] Offline check-in
 - [ ] Rate plan management screen (seasonal prices)
 - [x] Monthly occupancy and revenue report, CSV (any past Ethiopian month, CSV carries Ethiopian dates)
 - [ ] Company/credit statements on the shared credit ledger

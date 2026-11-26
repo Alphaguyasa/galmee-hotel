@@ -31,7 +31,6 @@ export function formToObject(formData: FormData, keys: readonly string[]) {
 
 const day = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
 const uuid = z.string().uuid();
-const money = z.coerce.number().positive().max(100_000_000);
 const optionalText = (max: number) =>
   z
     .string()
@@ -77,22 +76,6 @@ export const checkInSchema = z.object({
     .optional()
     .transform((v) => (v ? v : undefined)),
 }).refine((v) => v.photoPath === undefined || isIdPhotoPathFor(v.photoPath, v.stay), { path: ["photoPath"] });
-
-export const chargeSchema = z.object({
-  stay: uuid,
-  kind: z.enum(["food", "drink", "laundry", "other"]),
-  description: optionalText(200),
-  amount: money,
-  clientRef: uuid,
-});
-
-export const paymentSchema = z.object({
-  stay: uuid,
-  amount: money,
-  method: z.enum(["cash", "telebirr", "cbe_birr", "bank", "other"]),
-  reference: optionalText(80),
-  clientRef: uuid,
-});
 
 export const checkOutSchema = z.object({
   stay: uuid,

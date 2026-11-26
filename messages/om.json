@@ -362,5 +362,11 @@
     "empty": "Halkan kana keessummaan bule hin jiru.",
     "total": "{count, plural, =1 {keessummaa 1} other {keessummoota #}}",
     "signature": "Mallattoo simataa"
+  },
+  "sync": {
+    "queued": "Bilbila kana irratti olkaa'ameera. Yeroo neetworkiin deebi'u ni ergama.",
+    "queuedPayment": "Kaffaltii · {amount}",
+    "queuedCharge": "Kaffaltii dabalataa · {amount}",
+    "queueRefused": "Sarvarichi galmee kana hin fudhanne."
   }
 }

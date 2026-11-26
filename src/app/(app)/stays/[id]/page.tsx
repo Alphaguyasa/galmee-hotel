@@ -1,18 +1,16 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { randomUUID } from "node:crypto";
 import { getLocale, getTranslations } from "next-intl/server";
 import {
-  addChargeAction,
   cancelStayAction,
   checkInAction,
   checkOutAction,
-  payStayAction,
   reverseChargeAction,
 } from "@/actions/stays";
 import { ActionForm } from "@/components/hotel/action-form";
 import { SelectField } from "@/components/hotel/fields";
 import { IdPhotoField } from "@/components/hotel/id-photo-field";
+import { MoneyForm } from "@/components/hotel/money-form";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -140,9 +138,8 @@ export default async function StayPage({ params }: { params: Promise<{ id: strin
       {stay.status === "in_house" || stay.status === "reserved" ? (
         <section className="grid gap-2" aria-labelledby="pay">
           <h2 id="pay" className="text-lg font-semibold">{t("payTitle")}</h2>
-          <ActionForm action={payStayAction} submitLabel={t("payAction")} doneLabel={t("payDone")} variant="outline">
+          <MoneyForm rpc="ht_pay_stay" submitLabel={t("payAction")} doneLabel={t("payDone")}>
             <input type="hidden" name="stay" value={stay.id} />
-            <input type="hidden" name="clientRef" value={randomUUID()} />
             <input type="hidden" name="reference" value="" />
             <div className="grid grid-cols-2 gap-3">
               <div className="grid gap-2">
@@ -151,16 +148,15 @@ export default async function StayPage({ params }: { params: Promise<{ id: strin
               </div>
               <SelectField name="method" label={t("method")} defaultValue="cash" options={methods} />
             </div>
-          </ActionForm>
+          </MoneyForm>
         </section>
       ) : null}
 
       {stay.status === "in_house" ? (
         <section className="grid gap-2" aria-labelledby="charge">
           <h2 id="charge" className="text-lg font-semibold">{t("chargeTitle")}</h2>
-          <ActionForm action={addChargeAction} submitLabel={t("chargeAction")} doneLabel={t("chargeDone")} variant="outline">
+          <MoneyForm rpc="ht_add_charge" submitLabel={t("chargeAction")} doneLabel={t("chargeDone")}>
             <input type="hidden" name="stay" value={stay.id} />
-            <input type="hidden" name="clientRef" value={randomUUID()} />
             <div className="grid grid-cols-2 gap-3">
               <SelectField name="kind" label={t("kind")} defaultValue="food" options={KINDS.map((k) => ({ value: k, label: t(`kinds.${k}`) }))} />
               <div className="grid gap-2">
@@ -172,7 +168,7 @@ export default async function StayPage({ params }: { params: Promise<{ id: strin
               <Label htmlFor="description">{t("description")}</Label>
               <Input id="description" name="description" autoComplete="off" maxLength={200} />
             </div>
-          </ActionForm>
+          </MoneyForm>
         </section>
       ) : null}
 

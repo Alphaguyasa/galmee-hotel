@@ -230,18 +230,6 @@ export const getRegisterSuggestions = cache(async (): Promise<RegisterSuggestion
 });
 
 
-export async function addCharge(input: { stay: string; kind: string; description?: string; amount: number; clientRef: string }): Promise<MutationResult> {
-  const supabase = await createClient();
-  const { error } = await supabase.rpc("ht_add_charge", {
-    p_stay: input.stay,
-    p_kind: input.kind,
-    p_amount: input.amount,
-    p_description: input.description,
-    p_client_ref: input.clientRef,
-  });
-  return error ? fail(error.message) : { ok: true, data: undefined };
-}
-
 export async function reverseCharge(charge: string): Promise<MutationResult> {
   const supabase = await createClient();
   const { error } = await supabase.rpc("ht_reverse_charge", { p_charge: charge });
@@ -249,18 +237,6 @@ export async function reverseCharge(charge: string): Promise<MutationResult> {
 }
 
 type PayMethod = "cash" | "telebirr" | "cbe_birr" | "bank" | "other";
-
-export async function payStay(input: { stay: string; amount: number; method: PayMethod; reference?: string; clientRef: string }): Promise<MutationResult> {
-  const supabase = await createClient();
-  const { error } = await supabase.rpc("ht_pay_stay", {
-    p_stay: input.stay,
-    p_amount: input.amount,
-    p_method: input.method,
-    p_reference: input.reference,
-    p_client_ref: input.clientRef,
-  });
-  return error ? fail(error.message) : { ok: true, data: undefined };
-}
 
 export async function checkOutStay(input: { stay: string; amount: number; method: PayMethod; reference?: string; leaveBalance: boolean }): Promise<MutationResult> {
   const supabase = await createClient();

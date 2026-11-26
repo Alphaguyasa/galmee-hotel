@@ -362,5 +362,11 @@
     "empty": "በዚህ ሌሊት ያደረ እንግዳ የለም።",
     "total": "{count, plural, =1 {1 እንግዳ} other {# እንግዶች}}",
     "signature": "የእንግዳ ተቀባዩ ፊርማ"
+  },
+  "sync": {
+    "queued": "በዚህ ስልክ ተቀምጧል። ኔትወርክ ሲመለስ ይላካል።",
+    "queuedPayment": "ክፍያ · {amount}",
+    "queuedCharge": "ተጨማሪ ክፍያ · {amount}",
+    "queueRefused": "አገልጋዩ ይህን ግቤት አልተቀበለውም።"
   }
 }

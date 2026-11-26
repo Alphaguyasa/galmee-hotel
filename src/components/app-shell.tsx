@@ -4,6 +4,7 @@ import { logout } from "@/actions/auth";
 import { AppNav } from "@/components/app-nav";
 import { OfflineBanner } from "@/components/galmee/offline-banner";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { OfflineSync } from "@/components/offline-sync";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 
@@ -11,6 +12,7 @@ type ShellProps = {
   tenantName: string;
   logoUrl: string | null;
   userName: string;
+  role: string;
   roleLabel: string;
   canManage: boolean;
   children: React.ReactNode;
@@ -34,7 +36,7 @@ function TenantBadge({
   );
 }
 
-export async function AppShell({ tenantName, logoUrl, userName, roleLabel, canManage, children }: ShellProps) {
+export async function AppShell({ tenantName, logoUrl, userName, role, roleLabel, canManage, children }: ShellProps) {
   const [t, tCommon] = await Promise.all([getTranslations("auth"), getTranslations("common")]);
   return (
     <div className="min-h-dvh md:grid md:grid-cols-[15rem_1fr] print:block">
@@ -52,6 +54,7 @@ export async function AppShell({ tenantName, logoUrl, userName, roleLabel, canMa
             <div className="truncate font-medium">{userName}</div>
             <div className="text-muted-foreground">{roleLabel}</div>
           </div>
+          <OfflineSync role={role} replays={false} />
           <LanguageSwitcher />
           <form action={logout}>
             <Button variant="outline" size="sm" className="w-full">
@@ -66,6 +69,7 @@ export async function AppShell({ tenantName, logoUrl, userName, roleLabel, canMa
         <header className="print:hidden sticky top-0 z-30 flex h-16 items-center justify-between gap-2 bg-primary px-4 text-primary-foreground md:hidden">
           <TenantBadge tenantName={tenantName} logoUrl={logoUrl} inverse />
           <div className="flex items-center gap-1">
+            <OfflineSync role={role} className="bg-card text-foreground data-[sync=synced]:hidden" />
             <LanguageSwitcher inverse />
             <form action={logout}>
               <Button

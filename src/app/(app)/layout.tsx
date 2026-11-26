@@ -9,6 +9,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
       tenantName={tenant.name}
       logoUrl={tenant.logoUrl}
       userName={profile.fullName}
+      role={profile.role}
       roleLabel={tRoles(profile.role)}
       canManage={profile.role !== "staff"}
     >
